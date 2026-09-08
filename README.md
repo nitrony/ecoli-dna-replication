@@ -8,12 +8,12 @@ tags: [DNA-replication, scientific-animation]
 [アニメーションを開く](https://nitrony.github.io/ecoli-dna-replication/)
 
 研究室での説明・レビュー用の立体模式アニメーションです。
-oriC、DnaA、IHF、DnaB-DnaC、Pol III、岡崎フラグメント成熟、RecQとTopBを含むRCRの終結を18場面で示します。
-日本語字幕付き、5分30秒、音声なし。
+oriC、DnaA、IHF、DnaB-DnaC、Pol III、岡崎フラグメント成熟、RecQとTopBを含むRCRの終結を20場面で示します。
+日本語字幕付き、6分18秒、音声なし。
 
 - ブラウザで再生・停止・場面選択・回転・拡大ができます。
-- [MP4動画](replication-v2.mp4)をダウンロードできます。
-- [科学的な解説と16件の参考文献](references.md)にDOIと模式化の範囲を記載しています。
+- [MP4動画](replication-v3.mp4)をダウンロードできます。
+- [科学的な解説と19件の参考文献](references.md)にDOIと模式化の範囲を記載しています。
 
 ## コメント
 
@@ -25,7 +25,7 @@ GitHubアカウントをお持ちの場合はIssuesのフォームも利用で�
 ## 描写の範囲
 
 実測された原子構造や反応速度を再現したものではありません。
-DnaAの橋渡しは文献で述べられた可能性として半透明にしています。
+DnaAはIHF結合モデルの左5・中央1・右5分子に合わせ、未確定の橋渡し分子は追加していません。
 ニックの末端変位は視認のために強調しています。
 終結は再構成RCR系を基にした代表経路です。
 

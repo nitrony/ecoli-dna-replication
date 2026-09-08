@@ -8,7 +8,7 @@ body:
     id: scene
     attributes:
       label: 版・場面・再生時刻
-      placeholder: "v2 / TopBのゲートを鎖が通る / 4:34"
+      placeholder: "v3 / TopBのゲートを鎖が通る / 5:16"
   - type: textarea
     id: feedback
     attributes:

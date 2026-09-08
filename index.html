@@ -12,20 +12,20 @@
 dialog{border:1px solid var(--line);border-radius:12px;max-width:900px;width:calc(100% - 36px);max-height:90vh;padding:28px;color:var(--ink);box-shadow:0 18px 70px #10293f22}dialog::backdrop{background:#152d4266}dialog header{display:flex;justify-content:space-between;align-items:center}dialog h2{font-size:22px;margin:0}dialog h3{font-size:16px}dialog p,dialog li{font-size:13px;line-height:1.9}dialog ol{padding-left:24px}dialog li{margin:0 0 18px}dialog li span{display:block;color:var(--muted);font-size:12px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 @media(min-width:1500px){.main{padding:28px 40px}.app{grid-template-columns:280px minmax(0,1fr)}.chapter{font-size:13px;padding:12px 10px}}@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{padding:18px;border-right:0;border-bottom:1px solid var(--line);gap:14px}.brand h1{font-size:22px;margin:5px 0}.brand p,.side-footer{display:none}.chapter-list{flex-direction:row;overflow-x:auto}.chapter{display:flex;white-space:nowrap;width:auto;padding:10px}.chapter small{display:none}.main{padding:16px}.topbar{margin-bottom:12px}.topbar strong{font-size:11px}.hint{font-size:10px}.controls{gap:8px}.controls input{order:2;flex-basis:100%}.sources{font-size:11px}}
 </style>
-<meta name="description" content="大腸菌DNA複製の立体模式アニメーション。oriCでの開始から伸長、成熟、RCRの終結まで。日本語字幕・16件の原著文献付き。">
+<meta name="description" content="大腸菌DNA複製の立体模式アニメーション。oriCでの開始から伸長、成熟、RCRの終結まで。日本語字幕・19件の原著文献付き。">
 </head>
 <body>
 <div class="app">
-<aside class="sidebar"><div class="brand"><div class="eyebrow">MOLECULAR JOURNEY / E. COLI</div><h1>大腸菌の<br>DNA複製</h1><p>oriCでの複製開始から<br>RCRの終結・娘DNAの分離まで</p></div><nav id="chapters" class="chapter-list" aria-label="場面を選択"></nav><div class="side-footer">研究室での説明用 / 日本語字幕<br>分子形状と運動は模式表現<br>改訂版 v2 / 文献確認日 2026.09.08</div></aside>
+<aside class="sidebar"><div class="brand"><div class="eyebrow">MOLECULAR JOURNEY / E. COLI</div><h1>大腸菌の<br>DNA複製</h1><p>oriCでの複製開始から<br>RCRの終結・娘DNAの分離まで</p></div><nav id="chapters" class="chapter-list" aria-label="場面を選択"></nav><div class="side-footer">研究室での説明用 / 日本語字幕<br>分子形状と運動は模式表現<br>改訂版 v3 / 文献確認日 2026.09.08</div></aside>
 <main class="main">
 <div class="topbar"><strong>INITIATION → ELONGATION → TERMINATION</strong><button id="refs-open">文献と模式化について</button></div>
 <div class="stage"><canvas id="scene" width="1600" height="1000" aria-label="大腸菌DNA複製の立体模式アニメーション"></canvas><p id="accessible-scene" class="sr-only"></p></div>
 <div class="hint"><span>ドラッグで回転 / ホイールで拡大 / Spaceで再生</span><button id="reset-view" class="toolbtn">視点を戻す</button></div>
-<div class="controls"><button id="prev" aria-label="前の場面">‹</button><button id="play">▶ 再生</button><button id="next" aria-label="次の場面">›</button><input id="seek" aria-label="再生位置" type="range" min="0" max="330" step="0.1" value="0"><span id="time" class="time">0:00 / 5:30</span><select id="speed" aria-label="再生速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select><button id="labels" aria-pressed="true">ラベル ON</button></div>
+<div class="controls"><button id="prev" aria-label="前の場面">‹</button><button id="play">▶ 再生</button><button id="next" aria-label="次の場面">›</button><input id="seek" aria-label="再生位置" type="range" min="0" max="378" step="0.1" value="0"><span id="time" class="time">0:00 / 6:18</span><select id="speed" aria-label="再生速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select><button id="labels" aria-pressed="true">ラベル ON</button></div>
 <div class="legend"><span style="--c:#647888">親DNA</span><span style="--c:#1479b8">新生リーディング鎖</span><span style="--c:#579d96">新生ラギング鎖</span><span style="--c:#d2676a">RNAプライマー</span><span style="--c:#a78fc2">DnaB</span><span style="--c:#c7803c">DnaC</span></div>
-<section class="sources" aria-label="共有とコメント"><b>研究室レビュー用 / v2</b><a href="replication-v2.mp4" download>MP4をダウンロード（約48 MB）</a><button class="toolbtn" id="copy-feedback">この場面のコメント用メモをコピー</button><p style="margin:8px 0">共有者への返信に、場面名・再生時刻・指摘内容を添えてください。<a href="https://github.com/nitrony/ecoli-dna-replication/issues/new?template=feedback.yml" target="_blank" rel="noopener">GitHubでコメントする</a>（投稿にはGitHubアカウントが必要です）</p><span id="feedback-status" role="status"></span></section><section class="sources"><b>この場面の文献</b><span id="scene-sources"></span><div id="scene-detail" class="detail"></div></section>
+<section class="sources" aria-label="共有とコメント"><b>研究室レビュー用 / v3</b><a href="replication-v3.mp4" download>MP4をダウンロード（動画ファイル）</a><button class="toolbtn" id="copy-feedback">この場面のコメント用メモをコピー</button><p style="margin:8px 0">共有者への返信に、場面名・再生時刻・指摘内容を添えてください。<a href="https://github.com/nitrony/ecoli-dna-replication/issues/new?template=feedback.yml" target="_blank" rel="noopener">GitHubでコメントする</a>（投稿にはGitHubアカウントが必要です）</p><span id="feedback-status" role="status"></span></section><section class="sources"><b>この場面の文献</b><span id="scene-sources"></span><div id="scene-detail" class="detail"></div></section>
 </main></div>
-<dialog id="refs"><header><h2>文献と模式化</h2><button id="refs-close" class="toolbtn">閉じる</button></header><p>各場面の根拠は下記の原著論文に対応する。立体配置、分子形状、カメラ移動、時間配分は説明用に設計したもので、原子座標や分子動力学シミュレーションではない。</p><ol id="ref-list"></ol><h3>描写の範囲</h3><p>oriCのDnaA結合サイトは主要部を抜粋し、配列間隔と結合分子数を模式化した。IHFにより折れ曲がる経路を示し、HU、Fis、DiaAや開始時期の制御は省略した。Domain Iによる係留とDomain IIIによるロード補助を区別する。2個のDnaBのロード順序と協調については、Tsuruda et al. (2026) のモデルを補足で示し、対称な2イベントとして実証済みのようには扱わない。</p><p>フォークは右向きの1個を拡大表示する。鎖の向きの説明ではDNAを広げ、次の場面でトロンボーンモデルを示す。Pol III coreは2個を描画し、追加core、交換反応、サブユニットの厳密な量比は省略した。Gyraseの役割は図示するが鎖通過反応は省略し、校正は対象外とする。成熟はPol Iの鎖置換と5′ nuclease活性による代表的な経路を示し、RNase HIの寄与を補足する。分子ごとの運動や秒数は測定値ではない。</p><p>DnaAのらせんはShimizu et al. (2016) のモデルを中心に示す。半透明のDNA非結合DnaAは、同論文で可能性として言及された橋渡しであり、数と配置は未確定。DnaAが常に360°回転するとは主張しない。ニックの末端の揺れと開き幅は視認のために強調し、塩基欠落を意味しない。</p><p>終結はSu’etsugu et al. (2017) のRCRと、Suski and Marians (2008) の再構成反応を基にした代表経路。RecQによる一本鎖領域の形成、TopB（Topo III）のゲート開閉と鎖通過、TopB自身による再結合を示す。Topo IVによる閉じた二本鎖カテナンの脱連環と区別する。Tus-terは追加構成であり、TopB単独でも活性が得られるRCR条件がある。全経路の固定された反応順序ではない。</p><p><a href="references.md">科学的な解説と文献（Markdown）</a></p></dialog>
+<dialog id="refs"><header><h2>文献と模式化</h2><button id="refs-close" class="toolbtn">閉じる</button></header><p>各場面の根拠は下記の原著論文に対応する。立体配置、分子形状、カメラ移動、時間配分は説明用に設計したもので、原子座標や分子動力学シミュレーションではない。</p><ol id="ref-list"></ol><h3>描写の範囲</h3><p>oriCはIHF結合モデルに合わせ、左5分子・中央R2の1分子・右5分子の計11分子を描く。12個の結合サイトのうちτ1は非占有とする。配列間隔と結合時刻は模式化した。IHFにより折れ曲がる経路を示し、HU、Fis、DiaAや開始時期の制御は省略した。Domain Iによる係留とDomain IIIによるロード補助を区別する。2個のDnaBのロード順序と協調については、Tsuruda et al. (2026) のモデルを補足で示し、対称な2イベントとして実証済みのようには扱わない。</p><p>フォークは右向きの1個を拡大表示する。鎖の向きの説明ではDNAを広げ、次の場面でトロンボーンモデルを示す。Pol III coreは2個を描画し、追加core、交換反応、サブユニットの厳密な量比は省略した。Gyraseの役割は図示するが鎖通過反応は省略し、校正は対象外とする。成熟はPol Iの鎖置換と5′ nuclease活性による代表的な経路を示し、RNase HIの寄与を補足する。分子ごとの運動や秒数は測定値ではない。</p><p>DnaAのらせんはShimizu et al. (2016) のモデルを中心に示す。DNA非結合DnaAによる橋渡しの数・配置は未確定のため追加描画しない。DnaAが常に360°回転するとは主張しない。ニックの末端の揺れと開き幅は視認のために強調し、塩基欠落を意味しない。</p><p>冒頭の概要では閉じた二本鎖カテナンに対するTopo IVの脱連環とGyraseによる負の超らせん化を示す。終結の詳細はSu’etsugu et al. (2017) のRCRと、Suski and Marians (2008) の再構成反応を基にした代表経路。RecQによる一本鎖領域の形成、TopB（Topo III）のゲート開閉と鎖通過、TopB自身による再結合を示す。Topo IVによる閉じた二本鎖カテナンの脱連環と区別する。Tus-terは追加構成であり、TopB単独でも活性が得られるRCR条件がある。全経路の固定された反応順序ではない。</p><p><a href="references.md">科学的な解説と文献（Markdown）</a></p></dialog>
 <script>
 (() => {
 'use strict';
@@ -48,14 +48,19 @@ const refs=[
  {id:13,short:'Su’etsugu et al., 2017',journal:'Nucleic Acids Research',title:'Exponential propagation of large circular DNA by reconstitution of a chromosome-replication cycle',doi:'10.1093/nar/gkx822',url:'https://pubmed.ncbi.nlm.nih.gov/29036468/',why:'RCRの再構成、Topo IVとTopo III-RecQによる娘DNA分離、Gyraseによる超らせん化。Tus-terは追加構成。'},
  {id:14,short:'Suski & Marians, 2008',journal:'Molecular Cell',title:'Resolution of Converging Replication Forks by RecQ and Topoisomerase III',doi:'10.1016/j.molcel.2008.04.020',url:'https://pubmed.ncbi.nlm.nih.gov/18570879/',why:'RecQが未複製DNAをほどき、Topo IIIが一本鎖を含む終結中間体を解消する反応。'},
  {id:15,short:'Mills et al., 2018',journal:'Nature Structural & Molecular Biology',title:'Direct observation of topoisomerase IA gate dynamics',doi:'10.1038/s41594-018-0158-x',url:'https://pubmed.ncbi.nlm.nih.gov/30478267/',why:'大腸菌Topo IとTopo IIIの一本鎖DNAゲート開閉の単分子観測。鎖通過は機構モデルとして表示。'},
- {id:16,short:'Changela et al., 2001',journal:'Nature',title:'Crystal structure of a complex of a type IA DNA topoisomerase with a single-stranded DNA molecule',doi:'10.1038/35082615',url:'https://pubmed.ncbi.nlm.nih.gov/11429611/',why:'大腸菌Topo IIIのssDNA認識と、5′-phosphotyrosine中間体を経るType IA反応の根拠。'}
+ {id:16,short:'Changela et al., 2001',journal:'Nature',title:'Crystal structure of a complex of a type IA DNA topoisomerase with a single-stranded DNA molecule',doi:'10.1038/35082615',url:'https://pubmed.ncbi.nlm.nih.gov/11429611/',why:'大腸菌Topo IIIのssDNA認識と、5′-phosphotyrosine中間体を経るType IA反応の根拠。'},
+ {"id": 17, "short": "Ozaki et al., 2012", "journal": "Journal of Biological Chemistry", "title": "Differentiation of the DnaA-oriC Subcomplex for DNA Unwinding in a Replication Initiation Complex", "doi": "10.1074/jbc.M112.372052", "url": "https://pubmed.ncbi.nlm.nih.gov/22942281/", "why": "添付図の原著。左右のDnaAサブ複合体と、左側のDomain III界面におけるArg227・Leu290の役割。"},
+ {"id": 18, "short": "Sakiyama et al., 2017", "journal": "Nucleic Acids Research", "title": "Regulatory dynamics in the ternary DnaA complex for initiation of chromosomal replication in Escherichia coli", "doi": "10.1093/nar/gkx914", "url": "https://academic.oup.com/nar/article/45/21/12354/4428980", "why": "12個の結合サイトとIHFによるτ1占有の抑制、R5Mによる左側集合の促進、R1・R5MによるssDUE保持。"},
+ {"id": 19, "short": "Zechiedrich & Cozzarelli, 1995", "journal": "Genes & Development", "title": "Roles of topoisomerase IV and DNA gyrase in DNA unlinking during replication in Escherichia coli", "doi": "10.1101/gad.9.22.2859", "url": "https://pubmed.ncbi.nlm.nih.gov/7590259/", "why": "複製に伴うDNA連環の解消におけるTopo IVの主要な役割。Gyraseによる超らせん化と機能を分けて示す。"}
 ];
 const chapters=[
- {title:'oriCから始まる',en:'ONE ORIGIN, TWO REPLICATION FORKS',dur:16,refs:[1,6,13],detail:'対象は大腸菌の染色体複製。冒頭はシータ型複製を俯瞰する。灰色は親鎖、青とtealは新生鎖。各娘二本鎖に親鎖1本と新生鎖1本を表示する。分子のサイズ、配列の長さ、反応時間は縮尺に対応しない。',caps:['環状染色体の複製は、複製起点oriCから始まる。','2つのフォークが両方向へ進み、開いた領域に2組の娘二本鎖DNAができる。']},
- {title:'DnaA boxを認識する',en:'01 / ORIGIN RECOGNITION',dur:16,refs:[1,9,11,12],detail:'Domain IVは二本鎖DNAの配列認識、Domain IIIはATP結合と集合、Domain IIは柔軟なリンカー、Domain Iはタンパク質間相互作用を担う。R1とR4の高親和性サイト、中央R2、間にある低親和性サイトを模式表示。結合順序と占有率は定量的再現ではない。',caps:['DnaAのDomain IVが、oriCのDnaA boxを認識して結合する。','強いboxの間にも、Domain IIIの相互作用と低親和性サイトを介してDnaAが集まる。']},
- {title:'Domain IIIがらせん状に集合',en:'02 / A HELICAL DnaA ASSEMBLY',dur:22,refs:[9,10,11,12],detail:'Shimizu et al. (2016) の大腸菌モデルを基に、左右の集合体の一方を拡大する。Domain III同士のずれとDNAの湾曲を模式化。Aquifex由来の結晶構造も参考にするが、固定の360°回転、分子数、全oriCを貫く一様ならせんは主張しない。半透明の橋渡し分子は同論文Discussionの可能性であり、実証済みの配置ではない。',caps:['隣のDnaAのATPとArg fingerが接触し、Domain IIIが向きをずらして連なる。','この集合に伴いDNAが湾曲する。DNA非結合DnaAの橋渡しは、提案された可能性として示す。']},
- {title:'DnaAの集合とIHFの屈曲',en:'03 / ORGANIZING THE INITIATION COMPLEX',dur:16,refs:[1,12],detail:'IHFによる折り曲げはDUEとDnaA複合体を近づける。負の超らせん、熱揺らぎ、DnaAの集合が協働する。折り曲げだけを唯一の融解原因とはしない。',caps:['Domain IIIを介したDnaA同士の集合と、IHFによるDNAの屈曲が進む。','DUEがDnaA複合体の近くへ配置され、局所的にほどけた鎖を保持しやすくなる。']},
- {title:'DUEを融解して保持する',en:'04 / MELTING & ssDUE RECRUITMENT',dur:16,refs:[1,2],detail:'DUEはduplex-unwinding element。DnaAのDomain IIIがT-rich ssDUEを保持する。DARに結合したDnaAがssDUEを受け取る描写で、新たなDnaAだけが後から結合する経路には限定しない。',caps:['AT-richなDUEが局所的に融解し、2本のDNA鎖が離れる。骨格は切れない。','DnaAのDomain IIIがT-richな一本鎖DUEを保持し、開いた状態を安定化する。']},
+ {"title": "複製の概要", "en": "OVERVIEW / SUPERCOILED DNA & BIDIRECTIONAL REPLICATION", "dur": 22, "refs": [1, 6, 13, 19], "detail": "負のスーパーコイルを持つ環状DNAから始め、形を広げてシータ型複製を追う。表示の展開はDNA全体の生化学的な弛緩を意味しない。2つのフォークが進み、各娘DNAに親鎖1本と新生鎖1本が残る。正のねじれやプレカテナンの連続的処理は省略。", "caps": ["複製の鋳型は、負のスーパーコイルを持つ環状DNA。oriCに開始複合体ができる。", "oriCから2つのフォークが両方向へ進み、それぞれ娘二本鎖DNAを合成する。", "2つのフォークが収束すると、娘DNAを分離するための処理が必要になる。"]},
+ {"title": "カテナンになる", "en": "OVERVIEW / INTERLINKED DAUGHTER DNA CIRCLES", "dur": 12, "refs": [13, 19], "detail": "複製後の娘二本鎖DNAが閉じた環として連環したカテナンを、1組の連環に単純化して表示する。2つの曲線は実際に連環する立体配置であり、単に紙面上で重なった2円ではない。細胞内で娘DNAの全てが長時間カテナンとして蓄積するという主張ではない。", "caps": ["複製した2つの娘DNA環が、鎖の輪のようにつながったカテナンを示す。", "DNAの合成が終わっていても、閉じた環同士の連環は自由な移動だけでは解けない。"]},
+ {"title": "脱連環してスーパーコイル型へ", "en": "OVERVIEW / TOPO IV DECATENATION & GYRASE", "dur": 18, "refs": [13, 19], "detail": "Topo IVが二本鎖Gセグメントの両鎖を一時的に切り、別の二本鎖Tセグメントを通して再結合する概念図。その後のGyraseによる負の超らせん化を分けて示す。Topo IVによる脱連環は複製中にも進み、超らせん化とも時期が重なりうる。後半のTopB経路は一本鎖を含む中間体が基質であり、ここで示す閉じた二本鎖カテナンの処理と異なる。", "caps": ["Topo IVが二本鎖を一時的に開き、別の二本鎖を通してから再結合する。", "脱連環した2つの娘DNAに、Gyraseが負のスーパーコイルを導入する。"]},
+ {"title": "DnaA boxを認識する", "en": "01 / COOPERATIVE ORIGIN RECOGNITION", "dur": 18, "refs": [1, 9, 11, 12, 18], "detail": "R1・R4は高親和性、R2は中程度の親和性。これらの先行占有と、間にある低親和性サイトへの協同的集合を段階表示する。左側ではR5M結合ATP-DnaAが集合を主導しR1結合DnaAが補助する。IHF結合モデルの11個のDNA結合DnaAに統一し、結合の時刻・順序を測定値とはしない。IHF/τ1を含む長いR1-R5M間は屈曲可能なDNAとして残す。", "caps": ["Domain IVがDnaA boxを認識する。R1・R4に加え、中央R2にもDnaAが結合する。", "Domain IIIの直接の接触を介し、低親和性サイトのDnaAが協同的に集まる。"]},
+ {"title": "Domain IIIがらせん状に集合", "en": "02 / CLOSE-PACKED HELICAL DnaA SUBCOMPLEX", "dur": 22, "refs": [9, 10, 11, 12, 17, 18], "detail": "Shimizu et al. (2016) の左5・中央1・右5分子モデルの左側を拡大。5個のDomain IIIを接する大きさで配置し、少しずつ向きの異なる界面によるらせんと外側のDNA湾曲を示す。DNAに結合しない追加DnaAの分子数は確定していないため描画に加えない。この拡大ではIHFを含むR1-R5MのDNAループを省略し、次の場面で全体を示す。角度と座標は模式値。", "caps": ["Domain III同士が密に接し、ATPとArg fingerを介した界面ができる。", "5分子が少しずつ向きを変えて並ぶことで、DNAに沿ったらせん状集合体になる。"]},
+ {"title": "DnaAの集合とIHFの屈曲", "en": "03 / HELICAL SUBCOMPLEXES & IHF BENDING", "dur": 20, "refs": [1, 12, 17, 18], "detail": "らせん状の左右DnaAサブ複合体を保ち、IHFサイトのDNAを折り曲げてDUEを近づける。IHF結合時の左R1/R5M/τ2/I1/I2の5分子、中央R2の1分子、右C3/C2/I3/C1/R4の5分子を表示する。IHFがτ1の7/9 bpを覆うためτ1結合DnaAは描かない。負の超らせんは環状oriCのDUE融解を助ける。IHF自体の屈曲に負の超らせんが必須とはしない。特定条件では線状oriCのDUE融解も報告されている。", "caps": ["DnaA領域のらせんを保ったまま、IHFが結合するサイトでDNAが大きく曲がる。", "DUEが左側DnaAへ近づく。負のスーパーコイルも塩基対の解離を助ける。"]},
+ {title:'DUEを融解して保持する',en:'04 / MELTING & ssDUE RECRUITMENT',dur:16,refs:[1,2,12,18],detail:'DUEはduplex-unwinding element。DnaAのDomain IIIがT-rich ssDUEを保持する。DARに結合したDnaAがssDUEを受け取る描写で、新たなDnaAだけが後から結合する経路には限定しない。',caps:['AT-richなDUEが局所的に融解し、2本のDNA鎖が離れる。骨格は切れない。','DnaAのDomain IIIがT-richな一本鎖DUEを保持し、開いた状態を安定化する。']},
  {title:'DnaB-DnaCをロードする',en:'05 / HELICASE RECRUITMENT & LOADING',dur:18,refs:[2,3,5],detail:'Domain Iによる安定な係留とDomain IIIによる弱い相互作用を描き分ける。2026年の原著はDnaA結合鎖へのロードと相対するDnaBの移動が協調するモデルを示す。残基の精密配置は再現していない。',caps:['DnaAのDomain IがDnaB-DnaC複合体を係留し、Domain IIIもロードを助ける。','DnaCが開いたDnaBリングへ一本鎖を取り込み、各親鎖に1個ずつ配置する。']},
  {title:'DnaGの到着とDnaCの離脱',en:'06 / PRIMING & HELICASE ACTIVATION',dur:14,refs:[3,4],detail:'DnaGとDnaBの相互作用およびプライマー形成はDnaC離脱を促す。ロード、ATPase状態変化、primingの結合を示す代表的な経路であり、全分子が同時に離脱することを意味しない。',caps:['DnaG primaseがDnaBに結合し、短いRNAプライマーを合成する。','DnaGとの相互作用とプライマー形成に伴いDnaCが離れ、伸長へ移行する。']},
  {title:'複製装置を組み立てる',en:'07 / REPLISOME ASSEMBLY',dur:16,refs:[6],detail:'RNAプライマーの3′末端にクランプローダーがβクランプを装着し、Pol III coreが結合する。τを含む複合体がPol IIIとDnaBをつなぐ。図は機能を示す2-core模式図。',caps:['RNAプライマーの3′末端にβクランプが装着され、Pol IIIが結合する。','DnaB、DnaG、クランプローダー、Pol IIIが協調して複製フォークを進める。']},
@@ -68,7 +73,7 @@ const chapters=[
  {title:'RecQが終結中間体をほどく',en:'14 / AN ssDNA-CONTAINING INTERMEDIATE',dur:20,refs:[13,14],detail:'Suski and Marians (2008) の再構成反応に基づく代表経路。RecQは残存する親二本鎖DNAをほどき、TopBは一本鎖領域を利用して絡まりを解く。反応は協働しうるが、説明のため段階に分けた。固定的なRecQ-TopB複合体を意味しない。SSBは補助表示。',caps:['RecQが残った親二本鎖DNAをほどき、一本鎖領域を含む中間体をつくる。','TopB（Topo III）はこの一本鎖領域を利用して、娘DNAの絡まりを解く。']},
  {title:'TopBのゲートを鎖が通る',en:'15 / TYPE IA STRAND PASSAGE',dur:26,refs:[14,15,16],detail:'ゲートに結合するG鎖は一本鎖DNA。TopBの触媒Tyrが5′末端と共有結合し、別のDNAセグメントを通した後、TopB自身が再結合する。ここでは絡み合う親鎖2本を抜き出し、1回の一本鎖通過を拡大する。娘DNAの二本鎖部と多数の絡まりは省略。Type IAが通すTセグメントは条件により二本鎖の場合もある。閉じた二本鎖環同士をTopBがそのまま解く図ではない。',caps:['TopBが一本鎖の骨格を一時的に切り、5′末端を触媒Tyrで保持してゲートを開く。','別の鎖を通してからゲートを閉じ、TopB自身が骨格を再結合する。']},
  {title:'娘DNAを分離し、次の複製へ',en:'16 / DECATENATION & COMPLETION',dur:18,refs:[8,13,14],detail:'TopB経路の分離直後には未合成部分を含む娘DNAが残りうる。合成とLigAによる封鎖を経て、Gyraseが負の超らせんを導入する。RCRは再開始を反復する。別経路ではTopo IVが閉じた二本鎖DNAのカテナンを解消する。2017年論文ではTopB単独の活性も見られ、RecQがそれを促進した。',caps:['分離した娘DNAの残りを合成し、LigAがニックを封鎖する。','Gyraseが負の超らせんを導入する。RCRでは、できた環状DNAが次の鋳型になる。']},
- {title:'参考文献',en:'PRIMARY LITERATURE / 1985-2026',dur:24,refs:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],detail:'16件の原著を2ページで表示。完全なタイトル、DOI、リンク、根拠と模式化の区別は「文献と模式化について」およびMarkdownに記載。',caps:['文献に基づく立体模式アニメーション。原子構造や反応速度を再現したものではない。','DnaAと終結の追加文献。完全な書誌情報と描写の判断はHTMLとMarkdownに掲載。']}
+ {title:'参考文献',en:'PRIMARY LITERATURE / 1985-2026',dur:30,refs:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],detail:'19件の原著を3ページで表示。完全なタイトル、DOI、リンク、根拠と模式化の区別は「文献と模式化について」およびMarkdownに記載。',caps:['文献に基づく立体模式アニメーション。原子構造や反応速度を再現したものではない。','DnaAと終結の追加文献。完全な書誌情報と描写の判断はHTMLとMarkdownに掲載。']}
 ];
 let sum=0;chapters.forEach(c=>{c.start=sum;sum+=c.dur});const duration=sum;
 const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,t)=>a+(b-a)*t;
@@ -171,29 +176,81 @@ function domainPanel(activeDomain){
  const ds=[['I','相互作用',C.teal],['II','リンカー',C.gray],['III','ATP / 集合',C.blue],['IV','box認識',C.light]];
  ds.forEach((d,i)=>{let xx=x+61+i*118;ctx.strokeStyle=C.pale;ctx.lineWidth=4;if(i<3){ctx.beginPath();ctx.moveTo(xx,y+85);ctx.lineTo(xx+118,y+85);ctx.stroke()}ctx.fillStyle=d[2];ctx.beginPath();ctx.ellipse(xx,y+85,i===1?17:33,25,0,0,7);ctx.fill();if(activeDomain.includes(d[0])){ctx.strokeStyle=C.ink;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(xx,y+85,i===1?22:38,30,0,0,7);ctx.stroke()}text(d[0],xx,y+93,22,'#203445',700,'center');text(d[1],xx,y+142,17,C.muted,500,'center')});
 }
-function originPoint(s,bend=0){
- let q;
- if(s<-7){const t=(s+16)/9;q=[lerp(5.4,-7,t),2.8*(1-t)+1.4*Math.sin(Math.PI*t),.15*Math.sin(t*Math.PI)]}
- else q=[s,-.6*Math.sin((s+7)/23*Math.PI),0];
- return mix([s,0,0],q,bend);
-}
-function originStrand(s,bend,open,which){
- const p=originPoint(s,bend),theta=s*2.4;
- const bubble=(s>-14.7&&s<-9.1)?Math.sin((s+14.7)/5.6*Math.PI)*open:0;
- return add(p,[0,which*(.42*Math.cos(theta)*(1-bubble)+1.55*bubble),which*.42*Math.sin(theta)*(1-bubble)]);
-}
+// Eleven DNA-bound DnaA protomers in the IHF-bound model: left 5 + R2 1 + right 5.
+// Site coordinates are display parameters, not base-pair positions.
 const sites=[-6,-4.15,-2.3,-.45,1.4,3.2,5.1,7,8.9,10.8,12.7];
-function origin(bend,open,occupancy,ihf=0){
- const a=[],b=[];const n=192;
- for(let i=0;i<=n;i++){const s=-16+i/n*32;const aa=originStrand(s,bend,open,1),bb=originStrand(s,bend,open,-1);a.push(aa);b.push(bb);if(i%3===0&&Math.hypot(aa[1]-bb[1],aa[2]-bb[2])<1.1)segment(aa,bb,.035,'#c6d0d5')}
- tube(a,C.parent,.10);tube(b,C.parent2,.10);
- for(let i=0;i<sites.length;i++){
-  const s=sites[i],p=originPoint(s,bend),anchor=i===0||i===10,rank=anchor?(i===0?0:1):i===5?2:(i<5?i+2:13-i),opacity=clamp(occupancy*sites.length-rank);
-  ball(add(p,[0,.1,0]),anchor?.31:.20,anchor?C.blue:C.light,.75);
-  if(opacity>0){const target=add(p,[0,1.0,0]);dnaA(add(target,[0,(1-ease(opacity))*4,(1-opacity)*2]),.72,Math.min(1,opacity*2));}
+const siteNames=['R1','R5M','τ2','I1','I2','R2','C3','C2','I3','C1','R4'];
+const occupancyRank=[0,3,5,7,9,2,10,8,6,4,1];
+function cubic(a,b,c,d,t){return a.map((v,i)=>(1-t)**3*v+3*(1-t)**2*t*b[i]+3*(1-t)*t*t*c[i]+t**3*d[i])}
+function corePose(j,twist=1){
+ const k=j<5?j:j>5?j-6:0,angle=(j<5?k*1.35:j>5?(4-k)*1.29:0)*twist;
+ const radial=[0,Math.cos(angle),Math.sin(angle)],x=j<5?-9+1.65*k:j>5?3.7+1.65*k:.5;
+ const III=[x,.25+.68*Math.cos(angle),.68*Math.sin(angle)];
+ const IV=add(III,radial.map(v=>v*1.23));
+ const I=add(III,radial.map(v=>-v*1.20));
+ return {III,IV,I,radial,angle};
+}
+function packedDnaA(pose,alpha=1,arrival=0){
+ const shift=[0,arrival*4,arrival*2.5],III=add(pose.III,shift),IV=add(pose.IV,shift),I=add(pose.I,shift);
+ // Protein surfaces touch; no line is used to stand in for the domain III interface.
+ blob(III,1.03,C.blue,5,alpha,[1.02,1,1]);blob(IV,.47,C.light,3,alpha);
+ blob(mix(III,I,.73),.24,C.gray,9,alpha);blob(I,.39,C.teal,7,alpha);
+ return {III,IV,I};
+}
+function originPoint(s,bend=0,twist=1){
+ const left=corePose(0,twist).IV;
+ if(s<=-6){
+  const u=clamp((s+16)/10);
+  const flat=cubic([-18,2.2,0],[-15,2.2,0],[-12,2.2,0],left,u);
+  const folded=cubic([-2.8,5.5,.2],[-5.0,5.9,1.6],[-10.5,4.0,.8],left,u);
+  return mix(flat,folded,bend);
  }
- if(ihf>0){const p=originPoint(-7,bend);blob(add(p,[0,.3,0]),.55,C.teal,51,ihf,[1.3,.7,1]);label('IHF',p,-90,60)}
- return {a,b};
+ if(s<-4.15){
+  const t=(s+6)/1.85,end=corePose(1,twist).IV;
+  // The extended R1-R5M DNA spacer folds around IHF. τ1 is left unoccupied.
+  return cubic(left,mix(add(left,[-1.0,4.1,0]),add(left,[-3.4,-2.0,.3]),bend),mix(add(end,[1.0,4.1,0]),add(end,[-3.8,-2.4,.3]),bend),end,t);
+ }
+ if(s<=1.4){const k=1+(s+4.15)/1.85;return helixDNA(k,0,twist)}
+ if(s<3.2)return mix(corePose(4,twist).IV,corePose(5,twist).IV,(s-1.4)/1.8);
+ if(s<5.1)return mix(corePose(5,twist).IV,corePose(6,twist).IV,(s-3.2)/1.9);
+ if(s<=12.7)return helixDNA((s-5.1)/1.9,6,twist);
+ return add(corePose(10,twist).IV,[(s-12.7)*.8,0,0]);
+}
+function helixDNA(k,offset,twist){
+ const a=(offset===0?k*1.35:(4-k)*1.29)*twist;
+ return [(offset===0?-9:3.7)+1.65*k,.25+1.91*Math.cos(a),1.91*Math.sin(a)];
+}
+function originStrand(s,bend,open,which,twist=1){
+ const p=originPoint(s,bend,twist),theta=s*2.4;
+ const bubble=s>-14.7&&s<-9.1?Math.sin((s+14.7)/5.6*Math.PI)*open:0;
+ const q=add(p,[0,which*(.30*Math.cos(theta)*(1-bubble)+1.18*bubble),which*.30*Math.sin(theta)*(1-bubble)]);
+ if(which===-1&&bubble>0){const u=(s+14.7)/5.6,target=add(mix(corePose(0,twist).III,corePose(1,twist).III,clamp((u-.42)/.33)),[0,.82,.62]);return mix(q,target,bubble*bubble);}
+ return q;
+}
+function origin(bend,open,occupancy,ihf=0,twist=1){
+ const a=[],b=[],atoms=[];
+ for(let i=0;i<=320;i++){
+  const s=-16+i/320*32,aa=originStrand(s,bend,open,1,twist),bb=originStrand(s,bend,open,-1,twist);a.push(aa);b.push(bb);
+  if(i%4===0&&Math.hypot(aa[1]-bb[1],aa[2]-bb[2])<.85)segment(aa,bb,.027,'#c6d0d5');
+ }
+ tube(a,C.parent,.082);tube(b,C.parent2,.082);
+ for(let j=0;j<11;j++){
+  const opacity=clamp(occupancy*11-occupancyRank[j]),pose=corePose(j,twist);
+  ball(pose.IV,.19,j===0||j===10?C.blue:j===5?C.gold:C.light,.85);
+  atoms.push(pose);
+  if(opacity>0)packedDnaA(pose,Math.min(1,opacity*2),1-ease(opacity));
+ }
+ const ihfPoint=originPoint(-5.075,bend,twist);
+ if(ihf>0){blob(add(ihfPoint,[0,.12,0]),.69,C.teal,51,ihf,[1.2,.8,1]);label('IHF',ihfPoint,-80,62,C.teal)}
+ return {a,b,atoms,ihfPoint};
+}
+function originMap(occupancy=1,y=610){
+ const x=80,w=1440;
+ ctx.fillStyle='#fffffff5';roundrect(x,y,w,127,10);ctx.fill();ctx.strokeStyle='#dbe4e8';ctx.lineWidth=1;ctx.stroke();
+ text('結合サイトと表示分子数',x+22,y+29,21,C.ink,650);
+ const rows=[['左：5分子','R1   (IHF / τ1)   R5M   τ2   I1   I2'],['中央：1分子','R2'],['右：5分子','C3   C2   I3   C1   R4']];
+ rows.forEach((r,i)=>{const xx=x+24+[0,640,848][i];text(r[0],xx,y+61,20,C.blue,650);text(r[1],xx,y+89,19,C.ink,500)});
+ text('IHF結合モデル：τ1は非占有。左5 + 中央1 + 右5 = 計11分子。 [12,18]',x+22,y+115,17,C.muted);
 }
 function theta(alpha,showForks=true){
  const base=a=>[12*Math.cos(a),6.4*Math.sin(a),0];
@@ -218,70 +275,99 @@ function theta(alpha,showForks=true){
  if(showForks)for(const a of [lo,hi]){const q=base(a);blob(q,.48,C.purple,52);ball(add(q,[0,0,.35]),.2,C.blue)}
  return {base,paths,forks:[base(lo),base(hi)]};
 }
+function supercoiledPath(a,amount=1,rx=10,ry=4.5){
+ const phase=2*Math.PI*Math.cos(a)*amount;
+ return [rx*Math.cos(a),ry*Math.sin(a)*Math.cos(phase),ry*.70*Math.sin(a)*Math.sin(phase)];
+}
 function drawOverview(p){
- cam={yaw:.08+.1*p,pitch:.23,zoom:.87,center:[0,.4,0]};
- const a=lerp(.018,2.42,ramp(p,.10,.96)),t=theta(a);
- label('oriC',t.paths[1](.5),0,-52);
- if(p>.25){label('娘二本鎖DNA',t.paths[1](.3),125,-15);label('娘二本鎖DNA',t.paths[0](.66),40,85);}
- label('未複製の親二本鎖DNA',[0,-6.4,0],0,30);
- overlays.push(()=>{badge('シータ型複製：2つのフォークが進む',80,180);text('灰色：親鎖  /  青・teal：新生鎖',1515,220,21,C.muted,500,'right');text('1本の親鎖に1本の新生鎖が加わる。局所の長さと曲率は模式化。',800,739,20,C.muted,500,'center')});
+ cam={yaw:.04+.15*p,pitch:.28,zoom:.82,center:[0,-.6,0]};
+ if(p<.24){
+  const sc=1-ramp(p,.14,.24),path=u=>supercoiledPath(u*2*Math.PI,sc,12,6.4);
+  dna(path,270,{turns:28,rad:.25});label('oriC',path(.25),0,-55,C.blue);
+  overlays.push(()=>{badge(p<.14?'負のスーパーコイルを持つ環状DNA':'複製を追うため、形を広げて表示',80,181);noteBox('複製の出発点','DNAの軸自体が巻き込まれている。二重らせんの巻きとは区別。',80,622,1040)});
+ }else{
+  const alpha=lerp(.025,Math.PI-.012,ramp(p,.24,.97)),t=theta(alpha,p<.98);
+  label('oriC',t.paths[1](.5),0,-55,C.blue);
+  if(p<.85)label('未複製領域',t.base(-Math.PI/2),0,42);
+  label('娘二本鎖DNA 1',t.paths[1](.30),95,-45);label('娘二本鎖DNA 2',t.paths[0](.66),20,73);
+  overlays.push(()=>{badge(p>.88?'複製フォークが収束する':'シータ型複製：oriCから両方向へ',80,181);text('灰色：親鎖 / 青・teal：新生鎖',1515,217,21,C.muted,500,'right');noteBox('2つのフォークがDNAを開きながら進む','それぞれの娘DNAに、親鎖1本と新生鎖1本が残る。',80,622,1100)});
+ }
+}
+function daughterRingPath(u,which,separation=0,flat=0,supercoil=0){
+ const a=u*2*Math.PI,center=(which===0?-1:1)*lerp(3,8,separation),tilt=which===0?0:.75*(1-flat);
+ const basic=[6*Math.cos(a),4.7*Math.sin(a),0],coil=supercoiledPath(a,1,6,3.6),q=mix(basic,coil,supercoil);
+ return [center+q[0],q[1]*Math.cos(tilt)-q[2]*Math.sin(tilt),q[1]*Math.sin(tilt)+q[2]*Math.cos(tilt)];
+}
+function daughterRing(which,separation=0,flat=0,supercoil=0,gap=0){
+ const fn=u=>daughterRingPath(u,which,separation,flat,supercoil),cut=which===0?gap:0;
+ return dna(u=>fn(lerp(cut,1-cut,u)),220,{turns:20*(1-2*cut),rad:.27,a:which===0?C.parent:C.parent2,b:which===0?C.blue:C.teal});
+}
+function drawCatenane(p){
+ obstacles.push({x:80,y:610,w:1435,h:120});
+ cam={yaw:-.17+.43*p,pitch:.18,zoom:1.04,center:[0,-.6,0]};
+ daughterRing(0);daughterRing(1);
+ label('娘DNA 1',daughterRingPath(.5,0),-75,22,C.blue);label('娘DNA 2',daughterRingPath(0,1),100,15,C.teal);
+ overlays.push(()=>{badge('カテナン：2つの閉じたDNA環が連環する',80,181);noteBox('複製の完了と、娘DNAの分離は別の段階','ここでは閉じた二本鎖DNAのカテナンを示す。絡み数は1組に簡略化。',80,610,1435);text('環同士の上下関係を立体で示す。Topo IVは複製中の絡まりの解消にも働く。 [19]',800,752,18,C.muted,500,'center')});
+}
+function drawDecatenation(p){
+ obstacles.push({x:80,y:620,w:1440,h:112});
+ const move=ramp(p,.23,.65),opening=ramp(p,.08,.20)*(1-ramp(p,.62,.73)),flat=ramp(p,.69,.82),sc=ramp(p,.83,.98);
+ cam={yaw:.16,pitch:.37,zoom:.97,center:[0,0,0]};
+ daughterRing(0,move,flat,sc,.055*opening);daughterRing(1,move,flat,sc);
+ const gate=daughterRingPath(0,0,move,flat,sc);
+ if(p<.76){for(const side of [-1,1])blob(add(gate,[.22,side*(.6+opening*.7),0]),.82,C.purple,141+(side+1),1-ramp(p,.69,.76));label('Topo IV（ParC / ParE）',gate,95,-112,C.purple)}
+ if(p>.81&&p<.98)for(const which of [0,1]){const q=daughterRingPath(.22,which,move,flat,sc);blob(q,.68,C.gray,145,ramp(p,.81,.85)*(1-ramp(p,.94,.99)));label('Gyrase',q,0,-70)}
+ label('娘DNA 1',daughterRingPath(.5,0,move,flat,sc),0,65,C.blue);label('娘DNA 2',daughterRingPath(0,1,move,flat,sc),0,65,C.teal);
+ overlays.push(()=>{badge(p<.74?'Topo IVが脱連環する':'分離した娘DNAを負のスーパーコイル型へ',80,181);noteBox(p<.74?'二本鎖を一時的に切り、別の二本鎖を通して再結合':'Gyraseが負の超らせんを導入する',p<.74?'Topo IVの反応を概念表示。閉じた環が、切断なしにすり抜けることはない。':'説明では段階を分けている。細胞内では脱連環と超らせん化の時期は重なりうる。',80,620,1440)});
 }
 function drawRecognition(p){
- obstacles.push({x:1040,y:167,w:492,h:181});
- cam={yaw:.13+.08*p,pitch:.24,zoom:1.08,center:[0,.1,0]};
- const occ=.18+.82*ramp(p,.15,.9);origin(0,0,occ);
- for(const group of [[0,1,2,3,4],[10,9,8,7,6]])for(let k=0;k<4;k++){
-  const a=group[k],b=group[k+1],alpha=ramp(p,.26+k*.12,.4+k*.12);
-  interaction(add(originPoint(sites[a]),[0,1.25,0]),add(originPoint(sites[b]),[0,1.25,0]),C.blue,alpha);
- }
- label('DUE',[-12,0,0],0,65);label('R1（高親和性）',[-6,0,0],-55,130);label('低親和性サイト',[-2.3,0,0],0,75);label('R2',[3.2,0,0],0,70);label('低親和性サイト',[8.9,0,0],0,125);label('R4（高親和性）',[12.7,0,0],45,70);
- overlays.push(()=>{domainPanel(['IV','III']);badge(p<.3?'R1・R4を起点に集合':'boxの間にもDnaAが集まる',80,180);text('左右のサブ複合体と中央R2を区別。サイト間隔・結合順序は模式化。[11,12]',800,736,20,C.muted,500,'center')});
+ obstacles.push({x:1040,y:167,w:492,h:181},{x:80,y:175,w:640,h:47},{x:80,y:610,w:1440,h:127});
+ cam={yaw:.03,pitch:.16,zoom:1.12,center:[-1,0,0]};
+ const occ=(3+8*ramp(p,.26,.91))/11;
+ origin(0,0,occ,0,0);
+ label('DUE',originPoint(-12,0,0),-70,80);
+ label('R1：高親和性',corePose(0,0).IV,-145,70);
+ label('R5M：左の集合を促す',corePose(1,0).III,-60,105,C.blue);
+ label('R2：中程度',corePose(5,0).IV,0,85);
+ label('R4：高親和性',corePose(10,0).IV,80,90);
+ overlays.push(()=>{domainPanel(['IV','III']);badge(p<.26?'R1・R4・R2にDnaAが結合':'低親和性サイトへ、隣接して協同的に集合',80,181);originMap(occ);text('結合の段階を見せる模式図。配列間隔と結合時刻は縮尺どおりではない。',800,757,18,C.muted,500,'center')});
 }
 function drawHelicalAssembly(p){
- obstacles.push({x:1000,y:169,w:536,h:172},{x:76,y:618,w:650,h:112});
- cam={yaw:-.18+.7*p,pitch:.22,zoom:1.28,center:[-1.3,0,0]};
- const twist=ramp(p,.13,.70),count=5;
- const center=u=>{const angle=u*6.0*twist;return [-9+u*12,2.0*Math.cos(angle),2.0*Math.sin(angle)]};
- const atom=[];
- for(let i=0;i<count;i++){
-  const u=i/(count-1),a=u*6.0*twist,q=center(u),rad=[0,Math.cos(a),Math.sin(a)],iv=add(q,rad.map(v=>v*1.55)),one=add(q,[-.2,-1.4*Math.cos(a),-1.4*Math.sin(a)]);
-  segment(q,iv,.13,C.light);segment(q,one,.065,C.gray);
-  blob(q,.82,C.blue,5);blob(iv,.48,C.light,3);blob(one,.4,C.teal,7);
-  ball(add(q,[.68,0,.2]),.14,C.gold);atom.push({q,iv,one});
-  if(i){segment(atom[i-1].q,q,.11,C.blue,.7);ball(mix(atom[i-1].q,q,.57),.13,C.gold)}
- }
- const path=u=>{const a=u*6.0*twist;return add(center(u),[0,2.02*Math.cos(a),2.02*Math.sin(a)])};
- dna(path,180,{turns:14,rad:.27});
- // A transparent protomer conveys a proposed bridge, not a fixed stoichiometry.
- const bridgeAlpha=.42*ramp(p,.68,.86),bridge=add(mix(atom[0].q,atom[1].q,.5),[.1,-1.8,2.8]);
- if(bridgeAlpha>0){const br=dnaA(bridge,.95,bridgeAlpha);interaction(br.III,atom[0].q,C.blue,bridgeAlpha);interaction(br.III,atom[1].q,C.blue,bridgeAlpha);label('橋渡しDnaA（可能性）',br.III,0,125,C.muted)}
- label('Domain III',atom[2].q,15,-80,C.blue);label('Domain IV',atom[0].iv,-105,-35,C.blue);label('DNA',path(.80),80,75);
- overlays.push(()=>{
-  ctx.fillStyle='#ffffffef';roundrect(1000,169,536,172,12);ctx.fill();text('右巻き集合の模式モデル',1022,203,24,C.blue,650);text('ATPと隣のArg fingerが接触。',1022,242,21);text('ずれを伴う集合がDNAを湾曲させる。',1022,274,21);text('固定の360°回転や分子数を意味しない',1022,310,19,C.muted);
-  noteBox('大腸菌の構造モデル [12]','左右に別々の集合体。中央R2は独立した配置。',76,618,650);text('橋渡し分子の数・位置は未確定。半透明は文献で提案された可能性。',1520,748,19,C.muted,500,'right');
- });
+ obstacles.push({x:1030,y:174,w:495,h:192},{x:80,y:617,w:1440,h:114});
+ cam={yaw:-.12+.22*p,pitch:.26,zoom:1.77,center:[-5.8,.6,0]};
+ const twist=ramp(p,.09,.80),atoms=[];
+ for(let j=0;j<5;j++)atoms.push(packedDnaA(corePose(j,twist)));
+ dna(u=>helixDNA(u*4,0,twist),200,{turns:12,rad:.22});
+ // Small ATP markers sit at the contact surface, without connecting rods.
+ for(let j=1;j<5;j++)ball(add(mix(atoms[j-1].III,atoms[j].III,.5),[0,0,.78]),.095,C.gold);
+ label('Domain III',atoms[2].III,25,-150,C.blue);label('Domain IV',atoms[4].IV,110,70,C.blue);label('DNA',helixDNA(.15,0,twist),-105,-90);
+ overlays.push(()=>{ctx.fillStyle='#fffffff3';roundrect(1030,174,495,192,12);ctx.fill();text('隣接するDomain IIIが接する',1052,211,23,C.blue,650);wrap('ATPとArg fingerを介した界面で、各分子の向きが少しずつ変わる。',1052,248,450,20,31);text('左5分子の局所配置を拡大 [12,17]',1052,340,19,C.muted);noteBox('5分子からなるらせん状サブ複合体','DNAは外側に沿って湾曲する。IHFを含むR1-R5M間の長いDNAは、次の場面で示す。',80,617,1440);text('らせん角度は模式化。DNAに結合しない橋渡し分子を追加していない。',800,755,18,C.muted,500,'center')});
 }
 function drawBending(p){
- obstacles.push({x:1040,y:167,w:492,h:181},{x:82,y:600,w:650,h:112});
- const b=ramp(p,.12,.78);cam={yaw:.12+.13*p,pitch:.26,zoom:1.08,center:[0,.6,0]};origin(b,0,1,ramp(p,.02,.25));
- for(let j=0;j<sites.length-1;j++){if(j===4||j===5)continue;const a=add(originPoint(sites[j],b),[0,1.3,0]),d=add(originPoint(sites[j+1],b),[0,1.3,0]);segment(a,d,.1,C.blue,.58)}
- label('DUE',originPoint(-12,b),-20,-65);label('ATP-DnaA',add(originPoint(6,b),[0,1.6,0]),50,-68);
- overlays.push(()=>{badge('oriC全体の配置へ（らせんの細部は省略）',80,180);domainPanel(['III']);noteBox('屈曲と集合がつくる配置','負の超らせんと熱揺らぎもDUE融解に寄与する',82,600,650)});
+ obstacles.push({x:1030,y:172,w:497,h:156},{x:80,y:613,w:1440,h:120});
+ const bend=ramp(p,.29,.89),ihf=ramp(p,.16,.38);
+ cam={yaw:.05+.10*p,pitch:.39,zoom:1.14,center:[-1,1.1,0]};
+ const m=origin(bend,0,1,ihf,1);
+ label('DUE',originPoint(-12,bend),-30,-100,C.gold);
+ label('左サブ複合体：5分子',m.atoms[3].III,-75,145,C.blue);
+ label('R2：1分子',m.atoms[5].III,5,105,C.blue);
+ label('右サブ複合体：5分子',m.atoms[8].III,95,120,C.blue);
+ overlays.push(()=>{badge(p<.29?'DnaA領域のらせん構造を保つ':'IHFのサイトで曲がり、DUEを近づける',80,181);ctx.fillStyle='#fffffff0';roundrect(1030,172,497,156,12);ctx.fill();text('計11分子のIHF結合モデル',1050,207,22,C.blue,650);wrap('左5 + 中央R2 1 + 右5。τ1はIHFの占有領域と重なり、DnaAを置かない。',1050,244,455,20,29);noteBox('環状oriCのDUE融解を支える負のスーパーコイル','DnaAの集合とIHFの屈曲に協働し、塩基対の解離を助ける。屈曲だけが融解の原因ではない。',80,613,1440);text('白枠は環状DNAでの条件。IHFによる屈曲自体の必須条件とは区別する。 [1,12,17,18]',800,755,17,C.muted,500,'center')});
 }
 function drawMelting(p){
  obstacles.push({x:1040,y:167,w:492,h:181},{x:82,y:618,w:700,h:112});
- const op=ramp(p,.06,.60);cam={yaw:.25+.1*p,pitch:.30,zoom:1.12,center:[0,.9,0]};origin(1,op,1,1);
- if(p>.4){for(const s of [-12.1,-10.5]){const t=originStrand(s,1,op,-1),q=add(originPoint(s===-12.1?-.45:-2.3,1),[0,1.25,0]);interaction(t,q,C.blue,ramp(p,.4,.7));ball(t,.22,C.blue,ramp(p,.4,.7))}}
+ const op=ramp(p,.06,.60);cam={yaw:.25+.1*p,pitch:.30,zoom:1.12,center:[0,.9,0]};const m=origin(1,op,1,1);
+ if(p>.4){for(const s of [-12.1,-10.5]){const t=originStrand(s,1,op,-1),q=m.atoms[s===-12.1?0:1].III;interaction(t,q,C.blue,ramp(p,.4,.7));ball(t,.22,C.blue,ramp(p,.4,.7))}}
  label('T-rich ssDUE',originStrand(-12,1,op,-1),-90,95);label('相補鎖',originStrand(-12,1,op,1),-100,-82);
  overlays.push(()=>{domainPanel(['III']);noteBox('融解 = 塩基対の解離','2本の糖リン酸骨格は、連続したまま保たれる',82,618,700)});
 }
 function drawLoading(p){
  obstacles.push({x:1040,y:167,w:492,h:181},{x:72,y:602,w:688,h:112});
- cam={yaw:.3+.30*p,pitch:.35,zoom:1.13,center:[-1,1,0]};origin(1,1,1,1);
+ cam={yaw:.3+.30*p,pitch:.35,zoom:1.13,center:[-1,1,0]};const m=origin(1,1,1,1);
  const q1=originStrand(-12.9,1,1,1),q2=originStrand(-10.6,1,1,-1);
  const h1=mix(add(q1,[5,6,3]),q1,ramp(p,0,.58));const h2=mix(add(q2,[-7,-4,3]),q2,ramp(p,.18,.80));
  helicase(h1,1-ramp(p,.42,.75),1);helicase(h2,1-ramp(p,.68,.92),1);
- const anchor=dnaA(add(originPoint(-.45,1),[0,1.05,0]),.76);
+ const anchor=m.atoms[0];
  interaction(anchor.I,add(h1,[0,.6,0]),C.teal,1-ramp(p,.64,.95));
  interaction(anchor.III,h2,C.blue,ramp(p,.4,.65)*(1-ramp(p,.85,.99)));
  label('DnaB：6量体',h1,120,-70);label('DnaC loader',add(h2,[-1.1,0,0]),-100,95);
@@ -502,11 +588,11 @@ function drawProducts(p){
  overlays.push(()=>{noteBox('分離したDNAを次の鋳型へ','残りの合成 → ニック封鎖 → 負の超らせん化',82,176,748);noteBox('別経路：Topo IV（ParC / ParE）','閉じた二本鎖DNAのカテナンはTopo IVで脱連環できる。TopBの一本鎖ゲートと区別する。',82,628,1440);badge(p>.84?'RCR：再開始を反復':'TopB経路の後処理',1180,562);text('超らせん形状は概念表示。再開始の分子過程は省略。[13,14]',1510,760,18,C.muted,500,'right')});
 }
 function drawCredits(p){overlays.push(()=>{
- const page=Math.min(1,Math.floor(p*2));
+ const pages=Math.ceil(refs.length/8),page=Math.min(pages-1,Math.floor(p*pages));
  refs.slice(page*8,page*8+8).forEach((r,i)=>{const y=192+i*65;text(`[${r.id}] ${r.short}`,78,y,25,C.ink,650);text(`${r.journal}  /  DOI: ${r.doi}`,120,y+28,20,C.muted,450)});
- text('完全な論文タイトルとリンクは、同梱のHTMLとMarkdownに掲載。',80,746,20,C.muted);badge(`${page+1} / 2`,1430,170);
+ text('完全な論文タイトルとリンクは、同梱のHTMLとMarkdownに掲載。',80,746,20,C.muted);badge(`${page+1} / ${pages}`,1430,170);
 })}
-const renderers=[drawOverview,drawRecognition,drawHelicalAssembly,drawBending,drawMelting,drawLoading,drawActivation,drawAssembly,drawLeading,drawLagging,drawTrombone,drawMaturation,drawLigation,drawConvergence,drawRecQ,drawTopBGate,drawProducts,drawCredits];
+const renderers=[drawOverview,drawCatenane,drawDecatenation,drawRecognition,drawHelicalAssembly,drawBending,drawMelting,drawLoading,drawActivation,drawAssembly,drawLeading,drawLagging,drawTrombone,drawMaturation,drawLigation,drawConvergence,drawRecQ,drawTopBGate,drawProducts,drawCredits];
 function locate(t){let i=chapters.findIndex(c=>t<c.start+c.dur);return i<0?chapters.length-1:i}
 function draw(t){
  time=clamp(t,0,duration);const i=locate(time),c=chapters[i],p=clamp((time-c.start)/c.dur);local=p;
@@ -516,8 +602,8 @@ function draw(t){
  ctx.save();ctx.beginPath();ctx.rect(0,140,W,630);ctx.clip();renderers[i](p);drawScene();ctx.restore();
  ctx.fillStyle='#ffffff';ctx.fillRect(0,0,W,134);text(c.en,60,43,17,C.blue,650);text(c.title,58,99,43,C.ink,650);text(`${String(i+1).padStart(2,'0')} / ${chapters.length}`,1534,88,25,C.muted,450,'right');
  ctx.fillStyle='#e0e8ec';ctx.fillRect(0,133,W,1);ctx.fillRect(0,770,W,1);
- const cap=c.caps[p<.5?0:1];text('MECHANISM',60,817,15,C.blue,700);wrap(cap,60,862,1475,29,43);
- text(`文献 ${(c.refs.length>8?'[1]-[16]':c.refs.map(r=>'['+r+']').join(' '))}  |  立体配置・時間は模式表現`,60,961,19,C.muted,450);
+ const cap=c.caps[Math.min(c.caps.length-1,Math.floor(p*c.caps.length))];text('MECHANISM',60,817,15,C.blue,700);wrap(cap,60,862,1475,29,43);
+ text(`文献 ${(c.refs.length>8?'[1]-['+refs.length+']':c.refs.map(r=>'['+r+']').join(' '))}  |  立体配置・時間は模式表現`,60,961,19,C.muted,450);
  text(`${fmt(time)} / ${fmt(duration)}`,1536,961,20,C.muted,450,'right');
  ctx.fillStyle='#dde6eb';ctx.fillRect(0,986,W,14);ctx.fillStyle=C.blue;ctx.fillRect(0,986,W*time/duration,14);
  for(const ch of chapters){ctx.fillStyle='#ffffffbb';ctx.fillRect(W*ch.start/duration,986,3,14)}
@@ -531,7 +617,7 @@ let defaultLegend='';
 function updateChapter(i){
  const c=chapters[i];document.querySelectorAll('.chapter').forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));
  const legend=document.querySelector('.legend');if(!defaultLegend)defaultLegend=legend.innerHTML;
- legend.innerHTML=c.title==='TopBのゲートを鎖が通る'?'<span style="--c:#647888">G鎖：ゲートを開く親鎖</span><span style="--c:#579d96">T鎖：通過する親鎖</span><span style="--c:#1479b8">TopB（単量体）</span>':defaultLegend;
+ legend.innerHTML=c.title==='TopBのゲートを鎖が通る'?'<span style="--c:#647888">G鎖：ゲートを開く親鎖</span><span style="--c:#579d96">T鎖：通過する親鎖</span><span style="--c:#1479b8">TopB（単量体）</span>':i<3?'<span style="--c:#647888">親鎖</span><span style="--c:#1479b8">新生鎖（娘DNA 1）</span><span style="--c:#579d96">新生鎖（娘DNA 2）</span>':defaultLegend;
  document.getElementById('scene-sources').innerHTML=c.refs.map(n=>{const r=refs[n-1];return `<a href="${r.url}" target="_blank" rel="noopener">[${n}] ${r.short}</a>`}).join('');
  document.getElementById('scene-detail').textContent=c.detail;
  document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===chapters.length-1;
@@ -556,7 +642,7 @@ canvas.addEventListener('wheel',e=>{e.preventDefault();userZoom=clamp(userZoom*M
 window.addEventListener('keydown',e=>{if(dialog.open||['INPUT','SELECT','BUTTON','A'].includes(document.activeElement.tagName))return;if(e.code==='Space'){e.preventDefault();if(time>=duration)draw(0);setPlaying(!playing)}if(e.code==='ArrowRight'){e.preventDefault();draw(time+5)}if(e.code==='ArrowLeft'){e.preventDefault();draw(time-5)}});
 function tick(now){if(playing){if(last)draw(time+Math.min((now-last)/1000,.12)*speed);if(time>=duration)setPlaying(false)}last=now;requestAnimationFrame(tick)}
 // Deterministic frame control is used by the local export and visual verification scripts.
-window.replication={draw:t=>{setPlaying(false);resetView();draw(t)},duration,chapters,refs,get frameIndex(){return frameIndex},get state(){return {time,active,playing,showLabels,userYaw,userPitch,userZoom}},play:()=>setPlaying(true)};
+window.replication={draw:t=>{setPlaying(false);resetView();draw(t)},duration,chapters,refs,siteNames,corePose,topology:{daughterRingPath,supercoiledPath},get frameIndex(){return frameIndex},get state(){return {time,active,playing,showLabels,userYaw,userPitch,userZoom}},play:()=>setPlaying(true)};
 draw(0);requestAnimationFrame(tick);
 })();
 
@@ -564,7 +650,7 @@ draw(0);requestAnimationFrame(tick);
 <script>
 document.getElementById('copy-feedback').onclick=async()=>{
  const s=window.replication.state,c=window.replication.chapters[s.active],t=Math.floor(s.time),stamp=Math.floor(t/60)+':'+String(t%60).padStart(2,'0');
- const memo='大腸菌DNA複製アニメーション v2\n場面：'+c.title+'\n時刻：'+stamp+'\nURL：'+location.href.split('?')[0]+'\n指摘・質問：\n参考文献（任意）：';
+ const memo='大腸菌DNA複製アニメーション v3\n場面：'+c.title+'\n時刻：'+stamp+'\nURL：'+location.href.split('?')[0]+'\n指摘・質問：\n参考文献（任意）：';
  try{await navigator.clipboard.writeText(memo);document.getElementById('feedback-status').textContent='コピーしました。共有者への返信に貼り付けてください。'}catch(e){document.getElementById('feedback-status').textContent=memo;document.getElementById('feedback-status').style.whiteSpace='pre-wrap';}
 };
 </script></body></html>

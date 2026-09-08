@@ -1,6 +1,6 @@
 ---
 date: 2026-09-08
-version: 2
+version: 3
 tags: [DNA-replication, references]
 ---
 
@@ -10,22 +10,57 @@ tags: [DNA-replication, references]
 
 ## 科学的な描写の判断
 
-### DnaAの集合とDNAの湾曲
+### カテナンと負のスーパーコイル
 
-R1とR4を高親和性サイトとして示し、間の低親和性サイトへの集合をDomain III間の接触で補助する。[9,11]
-中央R2は左右のらせんから分ける。
-Shimizu et al. (2016) の大腸菌モデルは左右のDnaA集合体と独立した中央R2を提案している。[12]
-DNAに直接結合しないDnaAによる橋渡しも同論文Discussionで可能性として述べられているため、半透明にして実証された占有位置と区別した。
+冒頭では、負のスーパーコイルを持つ閉じた環状DNAを、形を広げながらシータ型複製の表示へ移す。
+形を広げる操作は全DNAが生化学的に弛緩するという意味ではなく、フォークの進行を読みやすくするための表示である。
+複製した娘二本鎖DNAが閉じた環として連環した**カテナン**を、1組の連環に単純化して示す。[13,19]
 
-らせんの構造的な基礎にはAquifex aeolicus DnaAの結晶構造があり、これを大腸菌全oriCの実測構造とは扱わない。[10]
-大腸菌ではDomain IIIとIVの相対配置も考慮される。[12]
-今回の映像は、回転角、分子数、ピッチ、形成速度を定量的に再現しない。
-「全oriCが一様な1本のらせんになる」「必ず360°ねじれる」とは主張しない。
-らせんの拡大後は、IHFとDUEの関係を読むための全体模式配置へ戻す。
+Topo IVは二本鎖を一時切断し、別の二本鎖を通して再結合する。
+アニメーションでも一方の環の両鎖にゲートを開き、そこを他方のDNAが通過してから閉じる。
+Gyraseによる負の超らせん化を後段に置く。[13,19]
+これらの過程は実際には時期が重なりうるため、映像の段階順を全細胞に共通の直列過程とはしない。
+後半に示すTopB反応は一本鎖領域を持つ中間体が対象であり、冒頭の閉じた二本鎖カテナンにそのまま適用しない。
 
-DUEの融解は塩基対の解離であり、骨格の切断ではない。
-IHFの屈曲、DnaA集合、負の超らせん、熱揺らぎの寄与を併記する。
-DnaAのDomain IIIがT-rich ssDUEを保持する関係を示す。[1]
+### DnaAの分子数と結合サイト
+
+描画の基準は、Shimizu et al. (2016) のIHFを含む大腸菌開始複合体モデルとする。[12]
+同モデルのDNA結合DnaAは左5分子、中央R2の1分子、右5分子の計11分子である。
+これは実験と計算を組み合わせた構造モデルの分子数であり、全条件におけるoriCの固定的な総占有数という意味ではない。
+
+| 領域 | 描画するDnaAの結合先 | 分子数 |
+|---|---|---|
+| 左 | R1、R5M、τ2、I1、I2 | 5 |
+| 中央 | R2 | 1 |
+| 右 | C3、C2、I3、C1、R4 | 5 |
+| IHFと重なるτ1 | このIHF結合モデルではDnaAを置かない | 0 |
+
+Sakiyama et al. (2017) はDORに12個のDnaA boxを記載している。[18]
+この数はτ1を含むサイト数であり、IHF結合後の同時占有数と区別する。
+同論文のfootprintではIHFがτ1の9 bp中7 bpを覆い、DnaAによるτ1占有を抑える。
+添付された2012年の図は当時のR3やR5を含む表記であるため、描画のサイト名と分子数には2016・2017年の整理を採用した。[12,17,18]
+DNA非結合DnaAの追加分子数は確定していないため、v2で半透明に示していた橋渡し分子はv3に加えない。
+
+### 協同的な集合とIHFの屈曲
+
+R1・R4は高親和性、R2は中程度の親和性として表示する。[18]
+これらの先行占有の後に、間の低親和性サイトにDnaAを並べる。
+左側ではR5Mに結合したATP-DnaAが集合を主導し、R1に結合したDnaAが補助することが示されている。[18]
+右側ではR4から内向きへの協同的集合を表す。[11]
+動画中の結合順序・時刻は、占有が増える過程を説明するための補間である。
+
+各サブ複合体内のDomain III同士を直接接する大きさにし、ずれを伴う界面によるらせんを示す。[9,12,17]
+Arg227とLeu290に関する左側の機能差を示した添付図の原著を、局所の配置を考える根拠として追加した。[17]
+R2を含めて全oriCを一続きの均一ならせんとすることは避け、左右のサブ複合体を分ける。[12]
+回転角、ピッチ、分子形状は模式値であり、原子座標の再現ではない。
+
+らせんの拡大場面ではIHFを含むR1-R5M間の長いDNAループを省略し、次の場面でそのループとIHFの屈曲を示す。
+DnaA領域のらせんを保ったままDUEを左側へ近づけ、融解したT-rich ssDUEをR1・R5MのDnaA付近に保持する。[1,12,18]
+DUEの融解は塩基対の解離であり、糖リン酸骨格は連続している。
+
+白い説明枠では、負のスーパーコイルが環状oriCのDUE融解を助けることを示す。
+IHFによるDNA屈曲そのものに負のスーパーコイルが必須という断定にはしない。
+Sakiyama et al. (2017) は特定条件で線状oriCのDUE融解も起こると述べており、基質と実験条件を分けて扱う。[18]
 
 ### ヘリケースのロードと伸長
 
@@ -79,9 +114,12 @@ Topo IVによる二本鎖カテナンの脱連環を別経路として併記す�
 | 論点 | 原著で確認した箇所 | 表現上の区別 |
 |---|---|---|
 | Arg285と隣接DnaAのATP | Kawakami et al. (2005), Abstract [9] | Arg fingerに関わる機能証拠 |
-| 左右の協同的集合 | Noguchi et al. (2015) [11]、Shimizu et al. (2016), Introduction [12] | 強いboxから内側へ向かう集合 |
-| らせんとR2、橋渡し分子 | Shimizu et al. (2016), Fig. 2, Discussion [12] | 計算と生化学に基づくモデル。橋渡しは可能性 |
+| 左右の協同的集合 | Noguchi et al. (2015) [11]、Shimizu et al. (2016), Introduction [12] | R1・R4からの集合とR5Mの役割を区別 |
+| らせんとR2、橋渡し分子 | Shimizu et al. (2016), Fig. 2, Discussion [12] | 左5・中央1・右5のモデル。未確定の橋渡しは追加しない |
 | 右巻きAAA+集合 | Erzberger et al. (2006), Abstract, Fig. 2 [10] | Aquifex由来。E. coli全oriCの直接観察ではない |
+| τ1、R5M、IHF | Sakiyama et al. (2017), Fig. 1-3と本文 [18] | サイト12個とIHF結合モデルの占有11分子を区別 |
+| 左側Domain III界面 | Ozaki et al. (2012), Fig. 1とAbstract [17] | 添付図の原著。左側に固有な界面の機能 |
+| カテナンの処理 | Zechiedrich and Cozzarelli (1995), Abstract [19] | Topo IVの主要な役割とGyraseの超らせん化 |
 | RCRと脱連環 | Su’etsugu et al. (2017), Fig. 1, Fig. 2と本文 [13] | Topo IVとTopo III-RecQ、RecQによる促進 |
 | RecQによる終結中間体の処理 | Suski and Marians (2008), Fig. 1, Fig. 2, Fig. 6-7 [14] | 一本鎖を含む中間体とgapped daughter products |
 | TopBのゲート開閉 | Mills et al. (2018), Fig. 1, Fig. 3, Fig. 5 [15] | ゲート開閉の単分子観測と機構モデル。動画の運動そのものは創作 |
@@ -90,7 +128,7 @@ Topo IVによる二本鎖カテナンの脱連環を別経路として併記す�
 ## 模式化と範囲
 
 - 球の集合で作った分子形状を3次元座標から遠近投影する。PDB座標、cryo-EM密度、AlphaFoldの形状や分子動力学計算ではない。
-- DNA長、分子間距離、分子数、反応速度、カメラ移動は説明用。DNAの曲率と超らせん形状も定量値に対応しない。
+- DNA長、分子間距離、反応速度、カメラ移動は説明用。DnaAは採用したモデルの11分子に合わせ、他の分子数は機能を説明する範囲とする。DNAの曲率と超らせん形状も定量値に対応しない。
 - DNAの線が画面上で交差するだけでは切断や連結を意味しない。TopBの一時切断と再結合、LigAのニック封鎖は個別に示す。
 - oriCの配列間隔、全サイトの占有率、HU、Fis、DiaA、SeqA、DARS、datA、開始時期の制御は網羅しない。
 - 伸長の拡大は右向きの1フォーク。対向フォークの消失を意味しない。
@@ -135,4 +173,11 @@ Topo IVによる二本鎖カテナンの脱連環を別経路として併記す�
   - 大腸菌Topo IとTopo IIIの一本鎖DNAゲート開閉の単分子観測。鎖通過は機構モデルとして表示。
 - **[16]** Changela et al., Nature, 2001, [Crystal structure of a complex of a type IA DNA topoisomerase with a single-stranded DNA molecule](https://pubmed.ncbi.nlm.nih.gov/11429611/). DOI: [10.1038/35082615](https://doi.org/10.1038/35082615)
   - 大腸菌Topo IIIのssDNA認識と、5′-phosphotyrosine中間体を経るType IA反応の根拠。
+
+- **[17]** Ozaki et al., Journal of Biological Chemistry, 2012, [Differentiation of the DnaA-oriC Subcomplex for DNA Unwinding in a Replication Initiation Complex](https://pubmed.ncbi.nlm.nih.gov/22942281/). DOI: [10.1074/jbc.M112.372052](https://doi.org/10.1074/jbc.M112.372052)
+  - 添付図の原著。左右のDnaAサブ複合体と、左側のDomain III界面におけるArg227・Leu290の役割。
+- **[18]** Sakiyama et al., Nucleic Acids Research, 2017, [Regulatory dynamics in the ternary DnaA complex for initiation of chromosomal replication in Escherichia coli](https://academic.oup.com/nar/article/45/21/12354/4428980). DOI: [10.1093/nar/gkx914](https://doi.org/10.1093/nar/gkx914)
+  - 12個の結合サイトとIHFによるτ1占有の抑制、R5Mによる左側集合の促進、R1・R5MによるssDUE保持。
+- **[19]** Zechiedrich & Cozzarelli, Genes & Development, 1995, [Roles of topoisomerase IV and DNA gyrase in DNA unlinking during replication in Escherichia coli](https://pubmed.ncbi.nlm.nih.gov/7590259/). DOI: [10.1101/gad.9.22.2859](https://doi.org/10.1101/gad.9.22.2859)
+  - 複製に伴うDNA連環の解消におけるTopo IVの主要な役割。Gyraseによる超らせん化と機能を分けて示す。
 
