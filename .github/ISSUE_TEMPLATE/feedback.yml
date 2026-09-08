@@ -1,0 +1,21 @@
+name: アニメーションへのコメント
+description: 科学的内容や見え方についての指摘・質問
+body:
+  - type: markdown
+    attributes:
+      value: "投稿内容は公開されます。版・場面・時刻があると修正箇所を特定しやすくなります。"
+  - type: input
+    id: scene
+    attributes:
+      label: 版・場面・再生時刻
+      placeholder: "v2 / TopBのゲートを鎖が通る / 4:34"
+  - type: textarea
+    id: feedback
+    attributes:
+      label: 指摘・質問
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: 参考文献・DOI（任意）

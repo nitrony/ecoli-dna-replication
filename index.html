@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大腸菌のDNA複製 | oriCからRCRの終結まで</title>
+<style>
+:root{color-scheme:light;--ink:#202c36;--muted:#667782;--line:#dbe2e5;--blue:#1479b8;--paper:#f4f7f8}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}button,input,select{font:inherit}button,a,select,input{outline-offset:4px}button{cursor:pointer}button:disabled{opacity:.35;cursor:default}button:focus-visible,a:focus-visible{outline:3px solid #1479b8}a{color:#146d9e;text-underline-offset:3px}.sidebar{min-width:0}.chapter-list{min-width:0;max-width:100%}dialog a{overflow-wrap:anywhere}
+.app{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh;max-width:2000px;margin:auto}.sidebar{background:#fff;border-right:1px solid var(--line);padding:28px 18px;display:flex;flex-direction:column;gap:20px}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--blue);font-weight:750}.brand h1{font-size:25px;line-height:1.35;margin:12px 0 10px;letter-spacing:-.8px}.brand p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}.chapter-list{display:flex;flex-direction:column;gap:3px}.chapter{border:0;background:transparent;text-align:left;display:grid;grid-template-columns:25px 1fr 30px;align-items:center;gap:4px;width:100%;padding:10px 8px;border-radius:7px;font-size:12px;color:var(--muted)}.chapter span:first-child{font-size:10px;font-variant-numeric:tabular-nums}.chapter small{font-size:10px;text-align:right}.chapter[aria-current=true]{background:#edf5f9;color:#155d88;font-weight:700;box-shadow:inset 3px 0 #1479b8}.chapter:hover{background:#f2f6f8}.side-footer{margin-top:auto;font-size:11px;line-height:1.9;color:var(--muted)}
+.main{min-width:0;padding:24px 28px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;font-size:12px;color:var(--muted)}.topbar strong{color:var(--ink);font-weight:500}.topbar button,.toolbtn{padding:9px 13px;border:1px solid var(--line);border-radius:6px;background:white;color:var(--ink)}.stage{overflow:hidden;background:#f9fbfc;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 32px #20364308;position:relative}canvas{width:100%;height:auto;display:block;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.hint{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin:12px 1px}.controls{display:flex;align-items:center;gap:12px;padding:16px 0;flex-wrap:wrap}.controls button{border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);height:40px;min-width:40px;padding:0 12px}.controls #play{background:var(--blue);border-color:var(--blue);color:white;min-width:104px}.controls input{flex:1;min-width:120px;accent-color:var(--blue)}.controls select{padding:9px;border:1px solid var(--line);border-radius:6px;background:white}.time{font-size:12px;font-variant-numeric:tabular-nums;min-width:94px}.sources{padding:15px 0;border-top:1px solid var(--line);font-size:12px;line-height:1.9}.sources b{font-weight:600;margin-right:10px}.sources a{margin-right:12px;display:inline-block}.detail{font-size:12px;line-height:1.9;color:#576b78;margin-top:8px}.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:11px;color:var(--muted);margin:7px 0 16px}.legend span:before{content:"";display:inline-block;width:18px;height:4px;border-radius:2px;background:var(--c);margin-right:6px;vertical-align:middle}
+dialog{border:1px solid var(--line);border-radius:12px;max-width:900px;width:calc(100% - 36px);max-height:90vh;padding:28px;color:var(--ink);box-shadow:0 18px 70px #10293f22}dialog::backdrop{background:#152d4266}dialog header{display:flex;justify-content:space-between;align-items:center}dialog h2{font-size:22px;margin:0}dialog h3{font-size:16px}dialog p,dialog li{font-size:13px;line-height:1.9}dialog ol{padding-left:24px}dialog li{margin:0 0 18px}dialog li span{display:block;color:var(--muted);font-size:12px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(min-width:1500px){.main{padding:28px 40px}.app{grid-template-columns:280px minmax(0,1fr)}.chapter{font-size:13px;padding:12px 10px}}@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{padding:18px;border-right:0;border-bottom:1px solid var(--line);gap:14px}.brand h1{font-size:22px;margin:5px 0}.brand p,.side-footer{display:none}.chapter-list{flex-direction:row;overflow-x:auto}.chapter{display:flex;white-space:nowrap;width:auto;padding:10px}.chapter small{display:none}.main{padding:16px}.topbar{margin-bottom:12px}.topbar strong{font-size:11px}.hint{font-size:10px}.controls{gap:8px}.controls input{order:2;flex-basis:100%}.sources{font-size:11px}}
+</style>
+<meta name="description" content="大腸菌DNA複製の立体模式アニメーション。oriCでの開始から伸長、成熟、RCRの終結まで。日本語字幕・16件の原著文献付き。">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar"><div class="brand"><div class="eyebrow">MOLECULAR JOURNEY / E. COLI</div><h1>大腸菌の<br>DNA複製</h1><p>oriCでの複製開始から<br>RCRの終結・娘DNAの分離まで</p></div><nav id="chapters" class="chapter-list" aria-label="場面を選択"></nav><div class="side-footer">研究室での説明用 / 日本語字幕<br>分子形状と運動は模式表現<br>改訂版 v2 / 文献確認日 2026.09.08</div></aside>
+<main class="main">
+<div class="topbar"><strong>INITIATION → ELONGATION → TERMINATION</strong><button id="refs-open">文献と模式化について</button></div>
+<div class="stage"><canvas id="scene" width="1600" height="1000" aria-label="大腸菌DNA複製の立体模式アニメーション"></canvas><p id="accessible-scene" class="sr-only"></p></div>
+<div class="hint"><span>ドラッグで回転 / ホイールで拡大 / Spaceで再生</span><button id="reset-view" class="toolbtn">視点を戻す</button></div>
+<div class="controls"><button id="prev" aria-label="前の場面">‹</button><button id="play">▶ 再生</button><button id="next" aria-label="次の場面">›</button><input id="seek" aria-label="再生位置" type="range" min="0" max="330" step="0.1" value="0"><span id="time" class="time">0:00 / 5:30</span><select id="speed" aria-label="再生速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select><button id="labels" aria-pressed="true">ラベル ON</button></div>
+<div class="legend"><span style="--c:#647888">親DNA</span><span style="--c:#1479b8">新生リーディング鎖</span><span style="--c:#579d96">新生ラギング鎖</span><span style="--c:#d2676a">RNAプライマー</span><span style="--c:#a78fc2">DnaB</span><span style="--c:#c7803c">DnaC</span></div>
+<section class="sources" aria-label="共有とコメント"><b>研究室レビュー用 / v2</b><a href="replication-v2.mp4" download>MP4をダウンロード（約48 MB）</a><button class="toolbtn" id="copy-feedback">この場面のコメント用メモをコピー</button><p style="margin:8px 0">共有者への返信に、場面名・再生時刻・指摘内容を添えてください。<a href="https://github.com/nitrony/ecoli-dna-replication/issues/new?template=feedback.yml" target="_blank" rel="noopener">GitHubでコメントする</a>（投稿にはGitHubアカウントが必要です）</p><span id="feedback-status" role="status"></span></section><section class="sources"><b>この場面の文献</b><span id="scene-sources"></span><div id="scene-detail" class="detail"></div></section>
+</main></div>
+<dialog id="refs"><header><h2>文献と模式化</h2><button id="refs-close" class="toolbtn">閉じる</button></header><p>各場面の根拠は下記の原著論文に対応する。立体配置、分子形状、カメラ移動、時間配分は説明用に設計したもので、原子座標や分子動力学シミュレーションではない。</p><ol id="ref-list"></ol><h3>描写の範囲</h3><p>oriCのDnaA結合サイトは主要部を抜粋し、配列間隔と結合分子数を模式化した。IHFにより折れ曲がる経路を示し、HU、Fis、DiaAや開始時期の制御は省略した。Domain Iによる係留とDomain IIIによるロード補助を区別する。2個のDnaBのロード順序と協調については、Tsuruda et al. (2026) のモデルを補足で示し、対称な2イベントとして実証済みのようには扱わない。</p><p>フォークは右向きの1個を拡大表示する。鎖の向きの説明ではDNAを広げ、次の場面でトロンボーンモデルを示す。Pol III coreは2個を描画し、追加core、交換反応、サブユニットの厳密な量比は省略した。Gyraseの役割は図示するが鎖通過反応は省略し、校正は対象外とする。成熟はPol Iの鎖置換と5′ nuclease活性による代表的な経路を示し、RNase HIの寄与を補足する。分子ごとの運動や秒数は測定値ではない。</p><p>DnaAのらせんはShimizu et al. (2016) のモデルを中心に示す。半透明のDNA非結合DnaAは、同論文で可能性として言及された橋渡しであり、数と配置は未確定。DnaAが常に360°回転するとは主張しない。ニックの末端の揺れと開き幅は視認のために強調し、塩基欠落を意味しない。</p><p>終結はSu’etsugu et al. (2017) のRCRと、Suski and Marians (2008) の再構成反応を基にした代表経路。RecQによる一本鎖領域の形成、TopB（Topo III）のゲート開閉と鎖通過、TopB自身による再結合を示す。Topo IVによる閉じた二本鎖カテナンの脱連環と区別する。Tus-terは追加構成であり、TopB単独でも活性が得られるRCR条件がある。全経路の固定された反応順序ではない。</p><p><a href="references.md">科学的な解説と文献（Markdown）</a></p></dialog>
+<script>
+(() => {
+'use strict';
+const canvas=document.getElementById('scene'), ctx=canvas.getContext('2d',{alpha:false});
+const W=1600,H=1000;
+const C={ink:'#202c36',muted:'#667782',parent:'#647888',parent2:'#95a6af',blue:'#1479b8',light:'#8fc3e2',teal:'#579d96',purple:'#a78fc2',loader:'#c7803c',rna:'#d2676a',gold:'#b19a64',gray:'#9a9ea1',pale:'#d3d5d6',dark:'#55595c'};
+const refs=[
+ {id:1,short:'Ozaki & Katayama, 2012',journal:'Nucleic Acids Research',title:'Highly organized DnaA-oriC complexes recruit the single-stranded DNA for replication initiation',doi:'10.1093/nar/gkr832',url:'https://academic.oup.com/nar/article/40/4/1648/2411284',why:'DnaAの機能領域、IHFによる屈曲、DUEの融解とssDUE recruitment。'},
+ {id:2,short:'Hayashi et al., 2020',journal:'Journal of Biological Chemistry',title:'DnaB helicase is recruited to the replication initiation complex via binding of DnaA domain I to the lateral surface of the DnaB N-terminal domain',doi:'10.1074/jbc.RA120.014235',url:'https://pubmed.ncbi.nlm.nih.gov/32540966/',why:'DnaA Domain IによるDnaBの係留とDomain IIIによるロード補助。'},
+ {id:3,short:'Arias-Palomo et al., 2019',journal:'Molecular Cell',title:'Physical Basis for the Loading of a Bacterial Replicative Helicase onto DNA',doi:'10.1016/j.molcel.2019.01.023',url:'https://www.sciencedirect.com/science/article/pii/S1097276519300437',why:'DnaCによるDnaBリングの開閉と一本鎖DNAの取り込み。'},
+ {id:4,short:'Makowska-Grzyska & Kaguni, 2010',journal:'Molecular Cell',title:'Primase Directs the Release of DnaC from DnaB',doi:'10.1016/j.molcel.2009.12.031',url:'https://doi.org/10.1016/j.molcel.2009.12.031',why:'DnaGとの相互作用およびプライマー形成に伴うDnaCの離脱。'},
+ {id:5,short:'Tsuruda et al., 2026',journal:'Nucleic Acids Research',title:'Dynamic DnaA-DnaB interactions at oriC coordinate the loading and coupled translocation of two DnaB helicases for bidirectional replication',doi:'10.1093/nar/gkaf1474',url:'https://pubmed.ncbi.nlm.nih.gov/41558826/',why:'Domain IIIを介した鎖特異的なロードと2個のDnaBの協調に関するモデル。'},
+ {id:6,short:'Yao et al., 2009',journal:'PNAS',title:'Single-molecule analysis reveals that the lagging strand increases replisome processivity but slows replication fork progression',doi:'10.1073/pnas.0906157106',url:'https://doi.org/10.1073/pnas.0906157106',why:'Pol III、βクランプ、DnaGによる複製とトロンボーンモデルを支持する単分子実験。'},
+ {id:7,short:'Kitani et al., 1985',journal:'Journal of Molecular Biology',title:'Evidence that discontinuous DNA replication in Escherichia coli is primed by approximately 10 to 12 residues of RNA starting with a purine',doi:'10.1016/0022-2836(85)90042-7',url:'https://pubmed.ncbi.nlm.nih.gov/2411935/',why:'大腸菌のRNAプライマーとRNase HおよびPol Iの寄与。'},
+ {id:8,short:'Botto et al., 2023',journal:'Nature Structural & Molecular Biology',title:'A four-point molecular handover during Okazaki maturation',doi:'10.1038/s41594-023-01071-y',url:'https://www.nature.com/articles/s41594-023-01071-y',why:'Pol IIIからPol Iへの移行、RNA置換と5′ nuclease活性、DNA ligaseへの受け渡し。'},
+ {id:9,short:'Kawakami et al., 2005',journal:'Journal of Biological Chemistry',title:'Formation of an ATP-DnaA-specific initiation complex requires DnaA Arginine 285, a conserved motif in the AAA+ protein family',doi:'10.1074/jbc.M502764200',url:'https://pubmed.ncbi.nlm.nih.gov/15901724/',why:'隣のDnaAに結合したATPを認識するArg285と開始複合体の機能。'},
+ {id:10,short:'Erzberger et al., 2006',journal:'Nature Structural & Molecular Biology',title:'Structural basis for ATP-dependent DnaA assembly and replication-origin remodeling',doi:'10.1038/nsmb1115',url:'https://www.nature.com/articles/nsmb1115',why:'Aquifex aeolicus DnaAの右巻きAAA+集合体。大腸菌全oriCの実測構造ではない。'},
+ {id:11,short:'Noguchi et al., 2015',journal:'Journal of Biological Chemistry',title:'The Arg Fingers of Key DnaA Protomers Are Oriented Inward within the Replication Origin oriC and Stimulate DnaA Subcomplexes in the Initiation Complex',doi:'10.1074/jbc.M115.662601',url:'https://pubmed.ncbi.nlm.nih.gov/26126826/',why:'R1とR4に結合したDnaAから内側へ向かう協同的集合と左右のサブ複合体。'},
+ {id:12,short:'Shimizu et al., 2016',journal:'PNAS',title:'Near-atomic structural model for bacterial DNA replication initiation complex and its functional insights',doi:'10.1073/pnas.1609649113',url:'https://pubmed.ncbi.nlm.nih.gov/27911788/',why:'大腸菌oriCの左右のDnaAらせんと中央R2のモデル。DNA非結合DnaAによる橋渡しはDiscussionで挙げられた可能性。'},
+ {id:13,short:'Su’etsugu et al., 2017',journal:'Nucleic Acids Research',title:'Exponential propagation of large circular DNA by reconstitution of a chromosome-replication cycle',doi:'10.1093/nar/gkx822',url:'https://pubmed.ncbi.nlm.nih.gov/29036468/',why:'RCRの再構成、Topo IVとTopo III-RecQによる娘DNA分離、Gyraseによる超らせん化。Tus-terは追加構成。'},
+ {id:14,short:'Suski & Marians, 2008',journal:'Molecular Cell',title:'Resolution of Converging Replication Forks by RecQ and Topoisomerase III',doi:'10.1016/j.molcel.2008.04.020',url:'https://pubmed.ncbi.nlm.nih.gov/18570879/',why:'RecQが未複製DNAをほどき、Topo IIIが一本鎖を含む終結中間体を解消する反応。'},
+ {id:15,short:'Mills et al., 2018',journal:'Nature Structural & Molecular Biology',title:'Direct observation of topoisomerase IA gate dynamics',doi:'10.1038/s41594-018-0158-x',url:'https://pubmed.ncbi.nlm.nih.gov/30478267/',why:'大腸菌Topo IとTopo IIIの一本鎖DNAゲート開閉の単分子観測。鎖通過は機構モデルとして表示。'},
+ {id:16,short:'Changela et al., 2001',journal:'Nature',title:'Crystal structure of a complex of a type IA DNA topoisomerase with a single-stranded DNA molecule',doi:'10.1038/35082615',url:'https://pubmed.ncbi.nlm.nih.gov/11429611/',why:'大腸菌Topo IIIのssDNA認識と、5′-phosphotyrosine中間体を経るType IA反応の根拠。'}
+];
+const chapters=[
+ {title:'oriCから始まる',en:'ONE ORIGIN, TWO REPLICATION FORKS',dur:16,refs:[1,6,13],detail:'対象は大腸菌の染色体複製。冒頭はシータ型複製を俯瞰する。灰色は親鎖、青とtealは新生鎖。各娘二本鎖に親鎖1本と新生鎖1本を表示する。分子のサイズ、配列の長さ、反応時間は縮尺に対応しない。',caps:['環状染色体の複製は、複製起点oriCから始まる。','2つのフォークが両方向へ進み、開いた領域に2組の娘二本鎖DNAができる。']},
+ {title:'DnaA boxを認識する',en:'01 / ORIGIN RECOGNITION',dur:16,refs:[1,9,11,12],detail:'Domain IVは二本鎖DNAの配列認識、Domain IIIはATP結合と集合、Domain IIは柔軟なリンカー、Domain Iはタンパク質間相互作用を担う。R1とR4の高親和性サイト、中央R2、間にある低親和性サイトを模式表示。結合順序と占有率は定量的再現ではない。',caps:['DnaAのDomain IVが、oriCのDnaA boxを認識して結合する。','強いboxの間にも、Domain IIIの相互作用と低親和性サイトを介してDnaAが集まる。']},
+ {title:'Domain IIIがらせん状に集合',en:'02 / A HELICAL DnaA ASSEMBLY',dur:22,refs:[9,10,11,12],detail:'Shimizu et al. (2016) の大腸菌モデルを基に、左右の集合体の一方を拡大する。Domain III同士のずれとDNAの湾曲を模式化。Aquifex由来の結晶構造も参考にするが、固定の360°回転、分子数、全oriCを貫く一様ならせんは主張しない。半透明の橋渡し分子は同論文Discussionの可能性であり、実証済みの配置ではない。',caps:['隣のDnaAのATPとArg fingerが接触し、Domain IIIが向きをずらして連なる。','この集合に伴いDNAが湾曲する。DNA非結合DnaAの橋渡しは、提案された可能性として示す。']},
+ {title:'DnaAの集合とIHFの屈曲',en:'03 / ORGANIZING THE INITIATION COMPLEX',dur:16,refs:[1,12],detail:'IHFによる折り曲げはDUEとDnaA複合体を近づける。負の超らせん、熱揺らぎ、DnaAの集合が協働する。折り曲げだけを唯一の融解原因とはしない。',caps:['Domain IIIを介したDnaA同士の集合と、IHFによるDNAの屈曲が進む。','DUEがDnaA複合体の近くへ配置され、局所的にほどけた鎖を保持しやすくなる。']},
+ {title:'DUEを融解して保持する',en:'04 / MELTING & ssDUE RECRUITMENT',dur:16,refs:[1,2],detail:'DUEはduplex-unwinding element。DnaAのDomain IIIがT-rich ssDUEを保持する。DARに結合したDnaAがssDUEを受け取る描写で、新たなDnaAだけが後から結合する経路には限定しない。',caps:['AT-richなDUEが局所的に融解し、2本のDNA鎖が離れる。骨格は切れない。','DnaAのDomain IIIがT-richな一本鎖DUEを保持し、開いた状態を安定化する。']},
+ {title:'DnaB-DnaCをロードする',en:'05 / HELICASE RECRUITMENT & LOADING',dur:18,refs:[2,3,5],detail:'Domain Iによる安定な係留とDomain IIIによる弱い相互作用を描き分ける。2026年の原著はDnaA結合鎖へのロードと相対するDnaBの移動が協調するモデルを示す。残基の精密配置は再現していない。',caps:['DnaAのDomain IがDnaB-DnaC複合体を係留し、Domain IIIもロードを助ける。','DnaCが開いたDnaBリングへ一本鎖を取り込み、各親鎖に1個ずつ配置する。']},
+ {title:'DnaGの到着とDnaCの離脱',en:'06 / PRIMING & HELICASE ACTIVATION',dur:14,refs:[3,4],detail:'DnaGとDnaBの相互作用およびプライマー形成はDnaC離脱を促す。ロード、ATPase状態変化、primingの結合を示す代表的な経路であり、全分子が同時に離脱することを意味しない。',caps:['DnaG primaseがDnaBに結合し、短いRNAプライマーを合成する。','DnaGとの相互作用とプライマー形成に伴いDnaCが離れ、伸長へ移行する。']},
+ {title:'複製装置を組み立てる',en:'07 / REPLISOME ASSEMBLY',dur:16,refs:[6],detail:'RNAプライマーの3′末端にクランプローダーがβクランプを装着し、Pol III coreが結合する。τを含む複合体がPol IIIとDnaBをつなぐ。図は機能を示す2-core模式図。',caps:['RNAプライマーの3′末端にβクランプが装着され、Pol IIIが結合する。','DnaB、DnaG、クランプローダー、Pol IIIが協調して複製フォークを進める。']},
+ {title:'リーディング鎖を伸ばす',en:'08 / CONTINUOUS LEADING-STRAND SYNTHESIS',dur:16,refs:[1,6],detail:'右へ進むフォークを拡大。上の親鎖は左5′、右3′でDnaBが5′→3′に移動するラギング鎖鋳型。下の親鎖は左3′、右5′でリーディング鎖鋳型。RNAプライマーから伸長する。',caps:['Pol IIIはRNAプライマーの3′末端から、DNAを5′→3′に伸ばす。','リーディング鎖では、合成の進む向きがフォークの移動方向と一致する。']},
+ {title:'ラギング鎖を繰り返し合成',en:'09 / DISCONTINUOUS LAGGING-STRAND SYNTHESIS',dur:20,refs:[6,7],detail:'向きを読むためDNAを広げた表示。RNAは各フラグメントの5′端に残り、3′端がフォークから離れる向きへ伸びる。DnaGによる開始、β装着、Pol III伸長を繰り返す。',caps:['ラギング鎖ではDnaGが新たなRNAプライマーを置き、βクランプとPol IIIが働く。','各岡崎フラグメントも5′→3′に伸びる。伸長方向はフォークの移動と逆になる。']},
+ {title:'トロンボーンループ',en:'10 / COORDINATING TWO STRANDS',dur:18,refs:[6],detail:'上のラギング鎖鋳型は左5′からフォーク側3′。新生鎖はRNA側5′からPol III側3′へ伸びる。下のリーディング鎖鋳型は左3′、右5′。向きの表示は同一鎖上の極性を示す。ループの長さ、放出タイミング、Pol III交換は模式化。直前の場面は方向説明のため広げてある。',caps:['ラギング鎖のDNAがループをつくり、Pol IIIは複製装置の近くで合成を続ける。','フラグメントを終えるとループを解放し、次のプライマーとβクランプへ移る。']},
+ {title:'RNAをDNAに置換する',en:'11 / OKAZAKI-FRAGMENT MATURATION',dur:20,refs:[7,8],detail:'Pol Iが既存DNAの3′末端から合成し、前方のRNAを置換する。5′ nuclease活性にはフラップの切断を含む。RNase HIもRNA除去に寄与しうるが、必ず先行する直列経路としては描かない。',caps:['Pol IIIに続いてPol Iが働き、前のフラグメントのRNAをDNAに置き換える。','Pol IがRNAを置換して離れたあとも、DNA骨格のつなぎ目にニックが残る。']},
+ {title:'LigAがニックを封鎖する',en:'12 / SEALING THE DNA BACKBONE',dur:16,refs:[8],detail:'末端数塩基の揺れとニックの幅は視認のための誇張であり、ニックが恒常的な一本鎖ギャップであることを意味しない。RNAをDNAに置換した後の3′-OHと5′-phosphateの間をNAD⁺依存性DNA ligase LigAが結ぶ。ギャップ充填はPol I、ニック封鎖はLigAの役割。',caps:['RNAがDNAへ置換されると、3′-OHと5′-phosphateの間にニックが残る。','LigAがホスホジエステル結合を形成し、DNA骨格が連続する。']},
+ {title:'2つのフォークが収束する',en:'13 / CONVERGING FORKS IN RCR',dur:18,refs:[13,14],detail:'ここからはSu’etsugu et al. (2017) のRCR系を基にした終結の説明。複製フォークの収束、残存DNAの処理、脱連環、成熟を分けて示す。Tus-terは2017年論文で追加検討された構成であり、RCRの絶対条件として描かない。',caps:['oriCから進んだ2つのフォークが収束し、未複製領域が小さくなる。','DNAを複製し終えることと、絡み合う娘DNAを分離することは、別の課題になる。']},
+ {title:'RecQが終結中間体をほどく',en:'14 / AN ssDNA-CONTAINING INTERMEDIATE',dur:20,refs:[13,14],detail:'Suski and Marians (2008) の再構成反応に基づく代表経路。RecQは残存する親二本鎖DNAをほどき、TopBは一本鎖領域を利用して絡まりを解く。反応は協働しうるが、説明のため段階に分けた。固定的なRecQ-TopB複合体を意味しない。SSBは補助表示。',caps:['RecQが残った親二本鎖DNAをほどき、一本鎖領域を含む中間体をつくる。','TopB（Topo III）はこの一本鎖領域を利用して、娘DNAの絡まりを解く。']},
+ {title:'TopBのゲートを鎖が通る',en:'15 / TYPE IA STRAND PASSAGE',dur:26,refs:[14,15,16],detail:'ゲートに結合するG鎖は一本鎖DNA。TopBの触媒Tyrが5′末端と共有結合し、別のDNAセグメントを通した後、TopB自身が再結合する。ここでは絡み合う親鎖2本を抜き出し、1回の一本鎖通過を拡大する。娘DNAの二本鎖部と多数の絡まりは省略。Type IAが通すTセグメントは条件により二本鎖の場合もある。閉じた二本鎖環同士をTopBがそのまま解く図ではない。',caps:['TopBが一本鎖の骨格を一時的に切り、5′末端を触媒Tyrで保持してゲートを開く。','別の鎖を通してからゲートを閉じ、TopB自身が骨格を再結合する。']},
+ {title:'娘DNAを分離し、次の複製へ',en:'16 / DECATENATION & COMPLETION',dur:18,refs:[8,13,14],detail:'TopB経路の分離直後には未合成部分を含む娘DNAが残りうる。合成とLigAによる封鎖を経て、Gyraseが負の超らせんを導入する。RCRは再開始を反復する。別経路ではTopo IVが閉じた二本鎖DNAのカテナンを解消する。2017年論文ではTopB単独の活性も見られ、RecQがそれを促進した。',caps:['分離した娘DNAの残りを合成し、LigAがニックを封鎖する。','Gyraseが負の超らせんを導入する。RCRでは、できた環状DNAが次の鋳型になる。']},
+ {title:'参考文献',en:'PRIMARY LITERATURE / 1985-2026',dur:24,refs:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],detail:'16件の原著を2ページで表示。完全なタイトル、DOI、リンク、根拠と模式化の区別は「文献と模式化について」およびMarkdownに記載。',caps:['文献に基づく立体模式アニメーション。原子構造や反応速度を再現したものではない。','DnaAと終結の追加文献。完全な書誌情報と描写の判断はHTMLとMarkdownに掲載。']}
+];
+let sum=0;chapters.forEach(c=>{c.start=sum;sum+=c.dur});const duration=sum;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,t)=>a+(b-a)*t;
+const ease=x=>{x=clamp(x);return x*x*(3-2*x)}, ramp=(p,a,b)=>ease((p-a)/(b-a));
+const mix=(a,b,t)=>a.map((v,i)=>lerp(v,b[i],t)), add=(a,b)=>a.map((v,i)=>v+b[i]);
+let time=0,playing=false,speed=1,showLabels=true,last=0,active=-1,frameIndex=0;
+let userYaw=0,userPitch=0,userZoom=1,primitives=[],labels=[],overlays=[],obstacles=[];
+let cam={yaw:.22,pitch:.32,zoom:1,center:[0,0,0]}, local=0;
+const sprites=new Map(),shapes=new Map();
+function sprite(color){
+ if(sprites.has(color))return sprites.get(color);
+ const c=document.createElement('canvas');c.width=c.height=96;const g=c.getContext('2d');
+ const grad=g.createRadialGradient(30,24,2,43,43,49);grad.addColorStop(0,'#ffffff');grad.addColorStop(.22,color);grad.addColorStop(.72,color);grad.addColorStop(1,'#344251');
+ g.fillStyle=grad;g.beginPath();g.arc(48,48,46,0,Math.PI*2);g.fill();sprites.set(color,c);return c;
+}
+function project(v){
+ let x=v[0]-cam.center[0],y=v[1]-cam.center[1],z=v[2]-cam.center[2];
+ const yaw=cam.yaw+userYaw,pitch=cam.pitch+userPitch;
+ const xx=x*Math.cos(yaw)+z*Math.sin(yaw),zz=-x*Math.sin(yaw)+z*Math.cos(yaw);
+ const yy=y*Math.cos(pitch)-zz*Math.sin(pitch),depth=y*Math.sin(pitch)+zz*Math.cos(pitch);
+ const sc=35*cam.zoom*userZoom*75/(75-depth);
+ return {x:800+xx*sc,y:450-yy*sc,z:depth,s:sc};
+}
+function ball(p,r,color,alpha=1){if(alpha>.005&&r>.001)primitives.push({type:'ball',p,r,color,alpha});}
+function segment(a,b,r,color,alpha=1){if(alpha>.005)primitives.push({type:'line',a,b,r,color,alpha});}
+function interaction(a,b,color,alpha=1){for(let i=0;i<12;i+=2)segment(mix(a,b,i/12),mix(a,b,(i+1)/12),.035,color,alpha)}
+function tube(points,color,r=.09,alpha=1,beads=true){for(let i=0;i<points.length;i++){if(i)segment(points[i-1],points[i],r,color,alpha);if(beads&&i%2===0)ball(points[i],r*1.72,color,alpha)}}
+function curve(fn,n=100){return Array.from({length:n+1},(_,i)=>fn(i/n))}
+function blob(p,r,color,seed=1,alpha=1,stretch=[1,1,1]){
+ const key=seed+':'+r;let sh=shapes.get(key);
+ if(!sh){sh=[];for(let i=0;i<32;i++){const y=1-2*(i+.5)/32,theta=i*2.399963+seed*.7,rr=Math.sqrt(1-y*y);const v=[Math.cos(theta)*rr,y,Math.sin(theta)*rr];sh.push({p:v,r:.27+.09*(.5+.5*Math.sin(i*12.7+seed))})}shapes.set(key,sh)}
+ ball(p,r*.83,color,alpha);
+ for(const b of sh)ball(add(p,b.p.map((v,i)=>v*r*.75*stretch[i])),b.r*r,color,alpha);
+}
+function label(text,p,dx=0,dy=-38,color=C.ink){labels.push({text,p,dx,dy,color});}
+function dna(fn,n=130,opt={}){
+ const a=[],b=[],turns=opt.turns??n/12;
+ for(let i=0;i<=n;i++){
+  const u=i/n,p=fn(u),prev=fn(Math.max(0,u-.002)),next=fn(Math.min(1,u+.002)),rad=typeof opt.rad==='function'?opt.rad(u):(opt.rad??.43);
+  const tx=next[0]-prev[0],ty=next[1]-prev[1],mag=Math.hypot(tx,ty)||1;
+  const normal=[-ty/mag,tx/mag,0],theta=u*turns*Math.PI*2+(opt.phase??0);
+  const off=[normal[0]*Math.cos(theta)*rad,normal[1]*Math.cos(theta)*rad,Math.sin(theta)*rad];
+  a.push(add(p,off));b.push(add(p,off.map(v=>-v)));
+  if(i%3===0)segment(a[i],b[i],.035,opt.rungColor||'#c8d1d6',opt.alpha??1);
+ }
+ tube(a,opt.a||C.parent,.10,opt.alpha??1);tube(b,opt.b||C.parent2,.10,opt.alpha??1);
+ return {a,b};
+}
+function dnaA(p,s=1,alpha=1){
+ const IV=add(p,[0,-.55*s,0]),III=add(p,[0,.35*s,0]),I=add(p,[.28*s,1.5*s,0]);
+ segment(IV,III,.12*s,C.light,alpha);segment(III,I,.075*s,C.gray,alpha);
+ blob(IV,.40*s,C.light,3,alpha);blob(III,.62*s,C.blue,5,alpha);blob(I,.37*s,C.teal,7,alpha);
+ return {I,III,IV};
+}
+function helicase(p,opening=0,loader=0,alpha=1,rotation=0){
+ for(let i=0;i<6;i++){
+  const theta=i/6*Math.PI*2+rotation;
+  const split=opening*(i<3?1:-1)*.55;
+  const q=add(p,[split,Math.sin(theta)*1.16,Math.cos(theta)*1.16]);
+  blob(q,.59,C.purple,i+11,alpha,[.9,1,1]);
+  if(loader>0)blob(add(q,[-1.06,0,0]),.44,C.loader,i+23,alpha*loader);
+ }
+}
+function beta(p,opening=0,alpha=1,scale=1){
+ for(let i=0;i<24;i++){const a=i/24*Math.PI*2;const split=opening*(i<12?1:-1)*.4;ball(add(p,[split*scale,.71*scale*Math.sin(a),.71*scale*Math.cos(a)]),.19*scale,C.gold,alpha)}
+}
+function ssb(p,alpha=1){for(let i=0;i<4;i++){const a=i*Math.PI/2;blob(add(p,[Math.cos(a)*.23,.2,Math.sin(a)*.23]),.25,C.gray,i+31,alpha)}}
+function drawScene(){
+ const draw=[];
+ for(const item of primitives){if(item.type==='ball'){const q=project(item.p);draw.push({...item,q,z:q.z})}else{const a=project(item.a),b=project(item.b);draw.push({...item,aa:a,bb:b,z:(a.z+b.z)/2})}}
+ draw.sort((a,b)=>a.z-b.z);
+ for(const item of draw){ctx.globalAlpha=item.alpha;
+  if(item.type==='ball'){let r=item.r*item.q.s;ctx.drawImage(sprite(item.color),item.q.x-r,item.q.y-r,r*2,r*2)}
+  else{ctx.strokeStyle=item.color;ctx.lineWidth=Math.max(.7,item.r*(item.aa.s+item.bb.s));ctx.lineCap='round';ctx.beginPath();ctx.moveTo(item.aa.x,item.aa.y);ctx.lineTo(item.bb.x,item.bb.y);ctx.stroke()}
+ }
+ ctx.globalAlpha=1;
+ if(showLabels)drawLabels();
+ for(const fn of overlays)fn();
+}
+function roundrect(x,y,w,h,r=9){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
+function text(str,x,y,size=24,color=C.ink,weight=500,align='left'){ctx.font=`${weight} ${size}px -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif`;ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline='alphabetic';ctx.fillText(str,x,y)}
+function wrap(str,x,y,width,size=27,lineheight=42,color=C.ink){ctx.font=`500 ${size}px -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif`;let line='',lines=[];for(const ch of str){if(ctx.measureText(line+ch).width>width&&line){lines.push(line);line=ch}else line+=ch}if(line)lines.push(line);lines.forEach((l,i)=>text(l,x,y+i*lineheight,size,color));return lines.length}
+function drawLabels(){
+ const used=[...obstacles];
+ for(const l of labels){const q=project(l.p);ctx.font='500 21px -apple-system, "Hiragino Sans", sans-serif';const w=ctx.measureText(l.text).width+22,h=36;
+  let x=clamp(q.x+l.dx-w/2,24,W-w-24),y=clamp(q.y+l.dy-h/2,160,728-h);
+  const collision=(xx,yy)=>used.some(b=>xx<b.x+b.w+5&&xx+w>b.x-5&&yy<b.y+b.h+4&&yy+h>b.y-4);
+  if(collision(x,y)){let found=false;for(let radius=40;radius<=520&&!found;radius+=40){for(const [ox,oy] of [[0,-radius],[0,radius],[-radius,0],[radius,0],[-radius,-radius],[radius,radius]]){const xx=clamp(x+ox,24,W-w-24),yy=clamp(y+oy,160,720-h);if(!collision(xx,yy)){x=xx;y=yy;found=true;break}}}}
+  used.push({x,y,w,h});ctx.strokeStyle='#8395a288';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(q.x,q.y);ctx.lineTo(x+w/2,y+h/2);ctx.stroke();
+  ctx.fillStyle='#ffffffec';roundrect(x,y,w,h,7);ctx.fill();ctx.strokeStyle='#d6e0e5';ctx.lineWidth=1;ctx.stroke();text(l.text,x+11,y+25,21,l.color,550);
+ }
+}
+function arrow(x1,y1,x2,y2,color=C.blue,title=''){
+ ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();const a=Math.atan2(y2-y1,x2-x1);ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-13*Math.cos(a-.45),y2-13*Math.sin(a-.45));ctx.lineTo(x2-13*Math.cos(a+.45),y2-13*Math.sin(a+.45));ctx.closePath();ctx.fill();if(title)text(title,(x1+x2)/2,y1-14,21,color,600,'center');
+}
+function noteBox(title,body,x=1030,y=180,w=490){ctx.fillStyle='#ffffffee';roundrect(x,y,w,112,10);ctx.fill();ctx.strokeStyle='#dbe4e8';ctx.lineWidth=1;ctx.stroke();text(title,x+22,y+34,22,C.ink,650);wrap(body,x+22,y+66,w-44,19,28,C.muted)}
+function badge(str,x,y,color=C.blue){ctx.font='600 20px -apple-system,"Hiragino Sans",sans-serif';const w=ctx.measureText(str).width+28;ctx.fillStyle='#ffffffee';roundrect(x,y,w,36,7);ctx.fill();text(str,x+14,y+25,20,color,600)}
+function domainPanel(activeDomain){
+ const x=1040,y=167,w=492;ctx.fillStyle='#fffffff4';roundrect(x,y,w,181,12);ctx.fill();ctx.strokeStyle='#dbe4e8';ctx.stroke();text('DnaAの機能領域',x+22,y+32,22,C.ink,650);
+ const ds=[['I','相互作用',C.teal],['II','リンカー',C.gray],['III','ATP / 集合',C.blue],['IV','box認識',C.light]];
+ ds.forEach((d,i)=>{let xx=x+61+i*118;ctx.strokeStyle=C.pale;ctx.lineWidth=4;if(i<3){ctx.beginPath();ctx.moveTo(xx,y+85);ctx.lineTo(xx+118,y+85);ctx.stroke()}ctx.fillStyle=d[2];ctx.beginPath();ctx.ellipse(xx,y+85,i===1?17:33,25,0,0,7);ctx.fill();if(activeDomain.includes(d[0])){ctx.strokeStyle=C.ink;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(xx,y+85,i===1?22:38,30,0,0,7);ctx.stroke()}text(d[0],xx,y+93,22,'#203445',700,'center');text(d[1],xx,y+142,17,C.muted,500,'center')});
+}
+function originPoint(s,bend=0){
+ let q;
+ if(s<-7){const t=(s+16)/9;q=[lerp(5.4,-7,t),2.8*(1-t)+1.4*Math.sin(Math.PI*t),.15*Math.sin(t*Math.PI)]}
+ else q=[s,-.6*Math.sin((s+7)/23*Math.PI),0];
+ return mix([s,0,0],q,bend);
+}
+function originStrand(s,bend,open,which){
+ const p=originPoint(s,bend),theta=s*2.4;
+ const bubble=(s>-14.7&&s<-9.1)?Math.sin((s+14.7)/5.6*Math.PI)*open:0;
+ return add(p,[0,which*(.42*Math.cos(theta)*(1-bubble)+1.55*bubble),which*.42*Math.sin(theta)*(1-bubble)]);
+}
+const sites=[-6,-4.15,-2.3,-.45,1.4,3.2,5.1,7,8.9,10.8,12.7];
+function origin(bend,open,occupancy,ihf=0){
+ const a=[],b=[];const n=192;
+ for(let i=0;i<=n;i++){const s=-16+i/n*32;const aa=originStrand(s,bend,open,1),bb=originStrand(s,bend,open,-1);a.push(aa);b.push(bb);if(i%3===0&&Math.hypot(aa[1]-bb[1],aa[2]-bb[2])<1.1)segment(aa,bb,.035,'#c6d0d5')}
+ tube(a,C.parent,.10);tube(b,C.parent2,.10);
+ for(let i=0;i<sites.length;i++){
+  const s=sites[i],p=originPoint(s,bend),anchor=i===0||i===10,rank=anchor?(i===0?0:1):i===5?2:(i<5?i+2:13-i),opacity=clamp(occupancy*sites.length-rank);
+  ball(add(p,[0,.1,0]),anchor?.31:.20,anchor?C.blue:C.light,.75);
+  if(opacity>0){const target=add(p,[0,1.0,0]);dnaA(add(target,[0,(1-ease(opacity))*4,(1-opacity)*2]),.72,Math.min(1,opacity*2));}
+ }
+ if(ihf>0){const p=originPoint(-7,bend);blob(add(p,[0,.3,0]),.55,C.teal,51,ihf,[1.3,.7,1]);label('IHF',p,-90,60)}
+ return {a,b};
+}
+function theta(alpha,showForks=true){
+ const base=a=>[12*Math.cos(a),6.4*Math.sin(a),0];
+ const lo=Math.PI/2-alpha,hi=Math.PI/2+alpha;
+ dna(u=>base(lerp(hi,lo+2*Math.PI,u)),Math.max(10,Math.round((Math.PI-alpha)*75)),{turns:Math.max(1,(Math.PI-alpha)*11)});
+ const paths=[];
+ for(const sign of [-1,1]){
+  const center=u=>{const a=lerp(lo,hi,u),sep=sign*2.3*Math.sin(Math.PI*u);return [(12+sep)*Math.cos(a),(6.4+sep)*Math.sin(a),sign*.32*Math.sin(Math.PI*u)]};
+  const parent=[],daughter=[],n=Math.max(24,Math.round(alpha*95));
+  for(let i=0;i<=n;i++){
+   const u=i/n,a=lerp(lo,hi,u),q=center(u),radius=.22*ramp(u,0,.04)*(1-ramp(u,.96,1)),phase=u*alpha*23;
+   const off=[Math.cos(a)*radius*Math.cos(phase),Math.sin(a)*radius*Math.cos(phase),radius*Math.sin(phase)];
+   parent.push(add(q,off));daughter.push(add(q,off.map(v=>-v)));
+   if(i%3===0)segment(parent[i],daughter[i],.027,'#b9cbd3');
+  }
+  tube(parent,sign===1?C.parent:C.parent2,.085);
+  const middle=Math.floor(n/2);
+  tube(daughter.slice(0,middle+1),sign===1?C.blue:C.teal,.10);
+  tube(daughter.slice(middle),sign===1?C.teal:C.blue,.10);
+  paths.push(center);
+ }
+ if(showForks)for(const a of [lo,hi]){const q=base(a);blob(q,.48,C.purple,52);ball(add(q,[0,0,.35]),.2,C.blue)}
+ return {base,paths,forks:[base(lo),base(hi)]};
+}
+function drawOverview(p){
+ cam={yaw:.08+.1*p,pitch:.23,zoom:.87,center:[0,.4,0]};
+ const a=lerp(.018,2.42,ramp(p,.10,.96)),t=theta(a);
+ label('oriC',t.paths[1](.5),0,-52);
+ if(p>.25){label('娘二本鎖DNA',t.paths[1](.3),125,-15);label('娘二本鎖DNA',t.paths[0](.66),40,85);}
+ label('未複製の親二本鎖DNA',[0,-6.4,0],0,30);
+ overlays.push(()=>{badge('シータ型複製：2つのフォークが進む',80,180);text('灰色：親鎖  /  青・teal：新生鎖',1515,220,21,C.muted,500,'right');text('1本の親鎖に1本の新生鎖が加わる。局所の長さと曲率は模式化。',800,739,20,C.muted,500,'center')});
+}
+function drawRecognition(p){
+ obstacles.push({x:1040,y:167,w:492,h:181});
+ cam={yaw:.13+.08*p,pitch:.24,zoom:1.08,center:[0,.1,0]};
+ const occ=.18+.82*ramp(p,.15,.9);origin(0,0,occ);
+ for(const group of [[0,1,2,3,4],[10,9,8,7,6]])for(let k=0;k<4;k++){
+  const a=group[k],b=group[k+1],alpha=ramp(p,.26+k*.12,.4+k*.12);
+  interaction(add(originPoint(sites[a]),[0,1.25,0]),add(originPoint(sites[b]),[0,1.25,0]),C.blue,alpha);
+ }
+ label('DUE',[-12,0,0],0,65);label('R1（高親和性）',[-6,0,0],-55,130);label('低親和性サイト',[-2.3,0,0],0,75);label('R2',[3.2,0,0],0,70);label('低親和性サイト',[8.9,0,0],0,125);label('R4（高親和性）',[12.7,0,0],45,70);
+ overlays.push(()=>{domainPanel(['IV','III']);badge(p<.3?'R1・R4を起点に集合':'boxの間にもDnaAが集まる',80,180);text('左右のサブ複合体と中央R2を区別。サイト間隔・結合順序は模式化。[11,12]',800,736,20,C.muted,500,'center')});
+}
+function drawHelicalAssembly(p){
+ obstacles.push({x:1000,y:169,w:536,h:172},{x:76,y:618,w:650,h:112});
+ cam={yaw:-.18+.7*p,pitch:.22,zoom:1.28,center:[-1.3,0,0]};
+ const twist=ramp(p,.13,.70),count=5;
+ const center=u=>{const angle=u*6.0*twist;return [-9+u*12,2.0*Math.cos(angle),2.0*Math.sin(angle)]};
+ const atom=[];
+ for(let i=0;i<count;i++){
+  const u=i/(count-1),a=u*6.0*twist,q=center(u),rad=[0,Math.cos(a),Math.sin(a)],iv=add(q,rad.map(v=>v*1.55)),one=add(q,[-.2,-1.4*Math.cos(a),-1.4*Math.sin(a)]);
+  segment(q,iv,.13,C.light);segment(q,one,.065,C.gray);
+  blob(q,.82,C.blue,5);blob(iv,.48,C.light,3);blob(one,.4,C.teal,7);
+  ball(add(q,[.68,0,.2]),.14,C.gold);atom.push({q,iv,one});
+  if(i){segment(atom[i-1].q,q,.11,C.blue,.7);ball(mix(atom[i-1].q,q,.57),.13,C.gold)}
+ }
+ const path=u=>{const a=u*6.0*twist;return add(center(u),[0,2.02*Math.cos(a),2.02*Math.sin(a)])};
+ dna(path,180,{turns:14,rad:.27});
+ // A transparent protomer conveys a proposed bridge, not a fixed stoichiometry.
+ const bridgeAlpha=.42*ramp(p,.68,.86),bridge=add(mix(atom[0].q,atom[1].q,.5),[.1,-1.8,2.8]);
+ if(bridgeAlpha>0){const br=dnaA(bridge,.95,bridgeAlpha);interaction(br.III,atom[0].q,C.blue,bridgeAlpha);interaction(br.III,atom[1].q,C.blue,bridgeAlpha);label('橋渡しDnaA（可能性）',br.III,0,125,C.muted)}
+ label('Domain III',atom[2].q,15,-80,C.blue);label('Domain IV',atom[0].iv,-105,-35,C.blue);label('DNA',path(.80),80,75);
+ overlays.push(()=>{
+  ctx.fillStyle='#ffffffef';roundrect(1000,169,536,172,12);ctx.fill();text('右巻き集合の模式モデル',1022,203,24,C.blue,650);text('ATPと隣のArg fingerが接触。',1022,242,21);text('ずれを伴う集合がDNAを湾曲させる。',1022,274,21);text('固定の360°回転や分子数を意味しない',1022,310,19,C.muted);
+  noteBox('大腸菌の構造モデル [12]','左右に別々の集合体。中央R2は独立した配置。',76,618,650);text('橋渡し分子の数・位置は未確定。半透明は文献で提案された可能性。',1520,748,19,C.muted,500,'right');
+ });
+}
+function drawBending(p){
+ obstacles.push({x:1040,y:167,w:492,h:181},{x:82,y:600,w:650,h:112});
+ const b=ramp(p,.12,.78);cam={yaw:.12+.13*p,pitch:.26,zoom:1.08,center:[0,.6,0]};origin(b,0,1,ramp(p,.02,.25));
+ for(let j=0;j<sites.length-1;j++){if(j===4||j===5)continue;const a=add(originPoint(sites[j],b),[0,1.3,0]),d=add(originPoint(sites[j+1],b),[0,1.3,0]);segment(a,d,.1,C.blue,.58)}
+ label('DUE',originPoint(-12,b),-20,-65);label('ATP-DnaA',add(originPoint(6,b),[0,1.6,0]),50,-68);
+ overlays.push(()=>{badge('oriC全体の配置へ（らせんの細部は省略）',80,180);domainPanel(['III']);noteBox('屈曲と集合がつくる配置','負の超らせんと熱揺らぎもDUE融解に寄与する',82,600,650)});
+}
+function drawMelting(p){
+ obstacles.push({x:1040,y:167,w:492,h:181},{x:82,y:618,w:700,h:112});
+ const op=ramp(p,.06,.60);cam={yaw:.25+.1*p,pitch:.30,zoom:1.12,center:[0,.9,0]};origin(1,op,1,1);
+ if(p>.4){for(const s of [-12.1,-10.5]){const t=originStrand(s,1,op,-1),q=add(originPoint(s===-12.1?-.45:-2.3,1),[0,1.25,0]);interaction(t,q,C.blue,ramp(p,.4,.7));ball(t,.22,C.blue,ramp(p,.4,.7))}}
+ label('T-rich ssDUE',originStrand(-12,1,op,-1),-90,95);label('相補鎖',originStrand(-12,1,op,1),-100,-82);
+ overlays.push(()=>{domainPanel(['III']);noteBox('融解 = 塩基対の解離','2本の糖リン酸骨格は、連続したまま保たれる',82,618,700)});
+}
+function drawLoading(p){
+ obstacles.push({x:1040,y:167,w:492,h:181},{x:72,y:602,w:688,h:112});
+ cam={yaw:.3+.30*p,pitch:.35,zoom:1.13,center:[-1,1,0]};origin(1,1,1,1);
+ const q1=originStrand(-12.9,1,1,1),q2=originStrand(-10.6,1,1,-1);
+ const h1=mix(add(q1,[5,6,3]),q1,ramp(p,0,.58));const h2=mix(add(q2,[-7,-4,3]),q2,ramp(p,.18,.80));
+ helicase(h1,1-ramp(p,.42,.75),1);helicase(h2,1-ramp(p,.68,.92),1);
+ const anchor=dnaA(add(originPoint(-.45,1),[0,1.05,0]),.76);
+ interaction(anchor.I,add(h1,[0,.6,0]),C.teal,1-ramp(p,.64,.95));
+ interaction(anchor.III,h2,C.blue,ramp(p,.4,.65)*(1-ramp(p,.85,.99)));
+ label('DnaB：6量体',h1,120,-70);label('DnaC loader',add(h2,[-1.1,0,0]),-100,95);
+ overlays.push(()=>{domainPanel(['I','III']);noteBox('I：係留 / III：ロード補助','DnaA-DnaBの異なる接触が受け渡しを支える',72,602,688);text('2個のDnaBの配置は模式化。ロードと移動の協調：[5]',1500,743,19,C.muted,500,'right')});
+}
+function forkGeometry(fork=5){
+ const top=x=>[x,x<fork?Math.min(3.0,(fork-x)*.46):0,0];
+ const bottom=x=>[x,x<fork?-Math.min(3.0,(fork-x)*.46):0,0];
+ return {top,bottom,fork};
+}
+function parentFork(g){
+ dna(u=>[lerp(g.fork,19,u),0,0],86,{turns:7,rad:u=>.43*ramp(u,0,.08)});
+ tube(curve(u=>g.top(lerp(-18,g.fork,u)),135),C.parent,.12);
+ tube(curve(u=>g.bottom(lerp(-18,g.fork,u)),135),C.parent2,.12);
+}
+function chainOn(fn,x0,x1,color,offset=.52){const pts=curve(u=>add(fn(lerp(x0,x1,u)),[0,offset,0]),Math.max(2,Math.ceil(Math.abs(x1-x0)*7)));tube(pts,color,.115);for(let i=0;i<pts.length;i+=4){const x=lerp(x0,x1,i/(pts.length-1));segment(fn(x),pts[i],.035,'#b9cbd3')}return pts;}
+function pol(p,alpha=1){blob(add(p,[0,-.55,.2]),.93,C.teal,64,alpha,[1.25,1,.9]);}
+function drawActivation(p){
+ obstacles.push({x:82,y:179,w:750,h:112});
+ cam={yaw:.36,pitch:.36,zoom:1.15,center:[0,0,0]};const g=forkGeometry(5);parentFork(g);
+ const hp=g.top(3.4);helicase(hp,0,1-ramp(p,.45,.85));
+ for(let i=0;i<6;i++){const a=i*Math.PI/3,v=add(hp,[-1.1-ramp(p,.45,.95)*3,Math.sin(a)*(1.2+ramp(p,.45,.95)*3),Math.cos(a)*1.2]);if(p>.45)blob(v,.4,C.loader,i+23,1-ramp(p,.80,1))}
+ const gp=mix([0,7,2],add(hp,[-1.3,1.6,0]),ramp(p,.02,.30));blob(gp,.65,C.gold,70);label('DnaG primase',gp,-110,-70);
+ if(p>.23){chainOn(g.bottom,-8,-8+ramp(p,.23,.67)*1.8,C.rna,.52);label('RNAプライマー',g.bottom(-7),-35,86)}
+ for(let x=-15;x<1;x+=3)ssb(add(g.top(x),[0,.35,0]));
+ label('DnaB',hp,90,60);label('SSB',g.top(-12),-30,68);
+ overlays.push(()=>{noteBox('開始と伸長をつなぐpriming','DnaGとの相互作用とRNA形成がDnaC離脱を促す',82,179,750);badge('右向きの1フォークを拡大',1100,190)});
+}
+function drawAssembly(p){
+ obstacles.push({x:82,y:179,w:758,h:112});
+ cam={yaw:.22,pitch:.30,zoom:1.03,center:[0,0,0]};const g=forkGeometry(5);parentFork(g);helicase(g.top(3.4));
+ chainOn(g.bottom,-2.7,-.9,C.rna,.52);chainOn(g.top,.2,-1.6,C.rna,-.52);
+ const target=add(g.bottom(-.9),[0,.25,0]),q=mix(add(target,[-4,-4,3]),target,ramp(p,.05,.4));beta(q,1-ramp(p,.2,.45),1,1.25);
+ const ltarget=add(g.top(-1.6),[0,-.3,0]),lq=mix(add(ltarget,[-3,4,3]),ltarget,ramp(p,.22,.55));beta(lq,1-ramp(p,.35,.60),1,1.25);
+ const hub=mix([0,-6,3],[.5,0,1.3],ramp(p,0,.35));blob(hub,1.15,C.gray,77,1,[1.5,.8,1]);label('クランプローダー（τを含む）',hub,260,110);
+ if(p>.3){const pp=mix([target[0],-8,3],target,ramp(p,.3,.62));pol(pp);segment(pp,hub,.09,C.gray);const lp=mix([ltarget[0],7,3],ltarget,ramp(p,.4,.70));pol(lp);segment(lp,hub,.09,C.gray);segment(hub,g.top(3.4),.09,C.gray);label('Pol III core',pp,-120,115);label('βクランプ',q,-155,-24)}
+ blob(add(g.top(2),[-1.2,1.7,0]),.60,C.gold,70);
+ overlays.push(()=>{noteBox('プライマーの3′末端を受け取る','βクランプがDNAを囲み、Pol IIIを保持する',82,179,758);badge('RNA 5′ → 3′',130,650,C.rna)});
+}
+function drawLeading(p){
+ const fork=lerp(-1,8,ramp(p,0,1)),g=forkGeometry(fork);cam={yaw:.12,pitch:.23,zoom:.99,center:[0,0,0]};parentFork(g);const leadEnd=fork-2.3;
+ chainOn(g.bottom,-17,-15.5,C.rna,.52);chainOn(g.bottom,-15.5,leadEnd,C.blue,.52);
+ const pp=add(g.bottom(leadEnd),[0,.26,0]);beta(pp);pol(pp);helicase(g.top(fork-1.6));
+ for(let x=-16;x<fork-3.5;x+=2.7)ssb(add(g.top(x),[0,.15,0]));
+ blob([fork+6,0,0],.8,C.gray,81);label('DNA gyrase',[fork+6,0,0],0,-72);
+ label('Pol III / 伸びる3′末端',pp,-80,85);label('DnaB',g.top(fork-1.6),70,-90);
+ overlays.push(()=>{arrow(1120,188,1430,188,C.dark,'フォーク →');arrow(390,656,910,656,C.blue,'DNA合成 5′ → 3′');badge('親鎖 5′',80,316,C.parent);badge('3′',1470,370,C.parent);badge('親鎖 3′',80,573,C.parent2);badge('5′',1470,445,C.parent2);badge('新生鎖 5′',112,631,C.blue);text('Gyraseは前方のねじれを緩和する（鎖通過反応は省略）',800,735,20,C.muted,500,'center')});
+}
+function drawLagging(p){
+ obstacles.push({x:82,y:635,w:758,h:112});
+ cam={yaw:.10,pitch:.20,zoom:.99,center:[0,0,0]};const g=forkGeometry(7);parentFork(g);helicase(g.top(5.4));
+ chainOn(g.bottom,-17,-15.5,C.rna,.52);chainOn(g.bottom,-15.5,4.8,C.blue,.52);pol(add(g.bottom(4.8),[0,.26,0]));beta(add(g.bottom(4.8),[0,.26,0]));
+ const cycle=clamp(p*3,0,2.999),index=Math.floor(cycle),phase=cycle-index;
+ for(let i=0;i<3;i++){
+  if(i>index)continue;const ph=i<index?1:phase,start=-9+i*5.6,prEnd=start-1.2;
+  chainOn(g.top,start,lerp(start,prEnd,ramp(ph,0,.22)),C.rna,-.52);
+  if(ph>.22){const end=lerp(prEnd,start-5.2,ramp(ph,.22,.85));chainOn(g.top,prEnd,end,C.teal,-.52);beta(add(g.top(end),[0,-.26,0]),0,ph>.88?1-ramp(ph,.88,1):1);if(ph<.88){pol(add(g.top(end),[0,-.24,0]));label('伸びる3′末端',g.top(end),-80,80)}}
+ }
+ const pos=-9+index*5.6;const gp=add(g.top(pos),[0,1.8,0]);blob(gp,.60,C.gold,70,1-ramp(phase,.23,.6));
+ if(phase<.40)label('DnaG',gp,20,-70);
+ label('岡崎フラグメント',g.top(-12),0,-95);label('RNA：各断片の5′端',g.top(pos),75,-65);
+ overlays.push(()=>{arrow(1120,188,1430,188,C.dark,'フォーク →');arrow(980,256,540,256,C.teal,'DNA合成 5′ → 3′');badge('親鎖 5′',80,350,C.parent);badge('3′',1470,380,C.parent);badge('親鎖 3′',80,570,C.parent2);badge('5′',1470,452,C.parent2);badge(`サイクル ${index+1} / 3`,80,178);noteBox('合成方向を読むために広げた表示','次の場面で、フォークに係留されたループを示す',82,635,758)});
+}
+function drawTrombone(p){
+ cam={yaw:.18+.12*p,pitch:.35,zoom:1.02,center:[0,-.2,0]};const g=forkGeometry(9);const phase=(p*2)%1,grow=ramp(phase,.02,.76),release=ramp(phase,.79,.98),size=(2.3+grow*5.3)*(1-release)+release*2.3;
+ dna(u=>[lerp(9,19,u),0,0],60,{turns:6});tube(curve(u=>g.bottom(lerp(-18,9,u)),140),C.parent2,.11);
+ chainOn(g.bottom,-18,-16.5,C.rna,.52);chainOn(g.bottom,-16.5,5.9,C.blue,.52);const lp=add(g.bottom(5.9),[0,.3,0]);pol(lp);beta(lp);
+ const hp=g.top(7.4);helicase(hp);
+ // The lagging template runs continuously from old product, through the loop and polymerase, to the fork.
+ const polPoint=[3.1,2.6,0];
+ const bez=(a,b,c,d,u)=>a.map((v,i)=>(1-u)**3*v+3*(1-u)**2*u*b[i]+3*(1-u)*u*u*c[i]+u**3*d[i]);
+ const tFn=u=>bez(polPoint,[8,2.6,.3],[3-size,-1-size*.75,1.5],[-5-size,2.3,0],u);
+ tube(curve(u=>bez(hp,[4.4,4.2,0],[1,2.6,0],polPoint,u),50),C.parent,.12);
+ const loopPts=curve(tFn,180);tube(loopPts,C.parent,.115);
+ tube(curve(u=>mix(tFn(1),[-18,2.3,0],u),60),C.parent,.115);
+ const newPts=curve(u=>add(tFn(u*.67),[0,-.48,0]),120);tube(newPts,C.teal,.115);
+ for(let i=0;i<newPts.length;i+=5)segment(tFn(i/(newPts.length-1)*.67),newPts[i],.035,'#b9cbd3');
+ tube(curve(u=>add(tFn(.67+u*.065),[0,-.48,0]),14),C.rna,.12);
+ const oldPts=curve(u=>add(mix([-18,2.3,0],tFn(1),u),[0,-.5,0]),60);tube(oldPts,C.teal,.10,.85);
+ beta(add(polPoint,[0,-.2,0]));pol(add(polPoint,[0,.2,0]));
+ const hub=[4.5,-.3,1];blob(hub,.8,C.gray,77);segment(hub,lp,.11,C.gray);segment(hub,polPoint,.11,C.gray);segment(hub,hp,.11,C.gray);
+ blob(add(hp,[-1.0,1.7,0]),.6,C.gold,70);for(const u of [.77,.87,.94])ssb(tFn(u));
+ label('ラギング鎖Pol III',polPoint,-20,-87);label('τを含む複合体',hub,110,85);label('リーディング鎖Pol III',lp,-70,85);label('トロンボーンループ',tFn(.45),-170,0);
+ label('新生鎖 3′（伸長端）',add(polPoint,[0,-.48,0]),50,85,C.teal);label('RNA 5′',add(tFn(.735),[0,-.48,0]),-80,85,C.rna);label('鋳型 5′',[-18,2.3,0],0,-70,C.parent);label('鋳型 3′',g.top(9),120,-70,C.parent);label('鋳型 3′',g.bottom(-18),0,75,C.parent2);label('鋳型 5′',g.bottom(9),140,65,C.parent2);
+ overlays.push(()=>{const a=project(add(tFn(.46),[0,-1,0])),b=project(add(tFn(.30),[0,-1,0]));arrow(a.x,a.y,b.x,b.y,C.teal);text('新生鎖：RNAの5′端 → Pol IIIの3′端',80,240,21,C.teal,600)});
+ overlays.push(()=>{arrow(1140,188,1430,188,C.dark,'フォーク →');badge(release>.1?'ループの解放と再開始':'ループの成長',80,180,C.teal);text('ループ形成と解放を示す模式モデル。線の交差はDNA鎖の切断や連結を示さない。',800,733,20,C.muted,500,'center')});
+}
+function maturationGeometry(){return x=>[x,0,Math.sin(x*.36)*.17]}
+function nickStrands(fn,p,join=0){
+ const nickX=-2,separation=.18*(1-join),flutter=1-join;
+ const endFn=(x,side)=>{
+  const q=add(fn(x),[0,-.8,0]),w=Math.max(0,1-Math.abs(x-nickX)/2.3)**2;
+  q[1]+=flutter*w*(side*(.33+.10*Math.sin(p*46+side))+.1*Math.sin(p*39));
+  q[2]+=flutter*w*.2*Math.sin(p*42+side);return q;
+ };
+ for(const side of [-1,1]){
+  const from=side<0?-16:nickX+separation,to=side<0?nickX-separation:16;
+  const pts=curve(u=>endFn(lerp(from,to,u),side),100);tube(pts,C.teal,.12);
+  for(let i=0;i<pts.length;i+=5)segment(fn(lerp(from,to,i/(pts.length-1))),pts[i],.028,'#b9cbd3',1-.5*flutter*Math.max(0,1-Math.abs(pts[i][0]-nickX)/2));
+ }
+ const a=endFn(nickX-separation,-1),b=endFn(nickX+separation,1);
+ if(join>0)segment(a,b,.12,C.teal,join);
+ return {a,b,mid:mix(a,b,.5)};
+}
+function nickInset(p,join,anchor){
+ // Terminal positions are exaggerated for visibility; no nucleotide is removed.
+ const x=920,y=178,w=610,h=238,cx=x+w/2,py=y+99,ny=y+155,move=(1-join)*(10+4*Math.sin(p*43)),gap=10*(1-join);
+ const q=project(anchor);ctx.strokeStyle='#94a8b7';ctx.lineWidth=1.3;ctx.setLineDash([4,5]);ctx.beginPath();ctx.moveTo(q.x,q.y);ctx.lineTo(cx,y+h);ctx.stroke();ctx.setLineDash([]);
+ ctx.fillStyle='#fffffffa';roundrect(x,y,w,h,12);ctx.fill();ctx.strokeStyle='#cbd9e2';ctx.stroke();
+ text(join<.95?'NICK / DNA骨格だけが不連続':'SEALED / DNA骨格が連続',x+20,y+34,22,join<.95?C.blue:C.teal,650);
+ ctx.lineWidth=5;ctx.lineCap='round';ctx.strokeStyle=C.parent;ctx.beginPath();ctx.moveTo(x+28,py);ctx.lineTo(x+w-28,py);ctx.stroke();
+ const left=[],right=[];
+ for(let i=0;i<=12;i++){
+  const xx=x+35+i*45,side=xx<cx?-1:1,influence=Math.max(0,1-Math.abs(xx-cx)/115)**2;
+  const yy=ny+move*side*influence;const pt=[xx,yy];(side<0?left:right).push(pt);
+  ctx.strokeStyle='#b9cbd3';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(xx,py+3);ctx.lineTo(xx,yy-4);ctx.stroke();
+  ctx.fillStyle=C.teal;ctx.beginPath();ctx.arc(xx,yy,5,0,7);ctx.fill();
+ }
+ left.push([cx-gap,ny-move]);right.unshift([cx+gap,ny+move]);
+ for(const pts of [left,right]){ctx.strokeStyle=C.teal;ctx.lineWidth=5;ctx.beginPath();pts.forEach(([xx,yy],i)=>i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy));ctx.stroke()}
+ if(join>.01){ctx.globalAlpha=join;ctx.beginPath();ctx.moveTo(cx-gap,ny-move);ctx.lineTo(cx+gap,ny+move);ctx.stroke();ctx.globalAlpha=1}
+ if(join<.9){ctx.strokeStyle=C.blue;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(cx,ny,30,31,0,0,7);ctx.stroke();text('5′-P',cx-63,ny+47,19,C.teal,600,'right');text('3′-OH',cx+63,ny+47,19,C.teal,600);}
+ text('塩基の欠落なし。末端の変位は説明用に強調。',x+20,y+h-15,18,C.muted);
+}
+function drawMaturation(p){
+ obstacles.push({x:82,y:642,w:730,h:112});if(p>.73)obstacles.push({x:920,y:178,w:610,h:238});
+ cam={yaw:.16,pitch:.28,zoom:1.22,center:[0,0,0]};const fn=maturationGeometry();tube(curve(u=>fn(lerp(-16,16,u)),180),C.parent,.13);
+ const disp=ramp(p,.12,.64),x=lerp(5,-2,disp),leaving=ramp(p,.68,.86);
+ if(p>.70){const n=nickStrands(fn,p,0);if(p>.73)overlays.push(()=>nickInset(p,0,n.mid));}
+ else{
+  chainOn(fn,-16,-2,C.teal,-.8);chainOn(fn,5,16,C.teal,-.8);
+  if(disp>0)chainOn(fn,x,5,C.teal,-.8);if(x>-1.99)chainOn(fn,-2,x,C.rna,-.8);
+ }
+ if(disp>.04&&disp<.97){const pts=curve(u=>[x+u*2,-.8-u*1.8,Math.sin(u*Math.PI)*.6],28);tube(pts,C.rna,.10);const pulse=(p*5)%1;for(let i=0;i<3;i++)ball([x+2+pulse*1.1+i*.25,-2.6-pulse*1.8,0],.13,C.rna,1-pulse)}
+ const pp=[x,-1.25-leaving*3,.1+leaving*2];blob(pp,1.0,C.teal,88,1-leaving,[1.2,1,1]);blob(add(pp,[-1.25,-.75,0]),.48,C.teal,89,1-leaving);
+ if(leaving<.8){label('Pol I：polymerase',pp,80,-75);label('5′ nuclease',add(pp,[-1.25,-.75,0]),-80,86)}
+ if(p<.73)label(disp<.90?'RNAプライマー':'DNAへ置換済み',[-1.1,0,0],-85,-105);
+ label('前に合成されたDNA',[-11,0,0],-10,90);label('直前の岡崎フラグメント',[11,0,0],20,90);
+ overlays.push(()=>{if(p<.73)arrow(1020,240,600,240,C.teal,'DNA合成 5′ → 3′');badge('親鎖 5′',62,391,C.parent);badge('3′',1472,490,C.parent);badge('新生鎖 3′',58,543,C.teal);badge('5′',1472,555,C.teal);noteBox('RNase HIもRNA除去に寄与','Pol Iの鎖置換と5′ nuclease経路を表示',82,642,730)});
+}
+function drawLigation(p){
+ obstacles.push({x:82,y:647,w:768,h:112},{x:920,y:178,w:610,h:238});
+ cam={yaw:.10,pitch:.24,zoom:1.22,center:[0,0,0]};const fn=maturationGeometry(),join=ramp(p,.44,.65);
+ tube(curve(u=>fn(lerp(-16,16,u)),180),C.parent,.13);const n=nickStrands(fn,p,join);
+ const position=mix([7,-3.3,1],[-2,-1.0,.2],ramp(p,.12,.38)),alpha=1-ramp(p,.76,.93);blob(position,1.05,C.blue,96,alpha,[1.15,.8,1]);if(alpha>.1)label('LigA（NAD⁺依存性）',position,40,110);
+ overlays.push(()=>{nickInset(p,join,n.mid);badge(join<.8?'ニックを強調表示':'ホスホジエステル結合が成立',82,180,C.blue);noteBox('最後にDNA骨格をつなぐ','LigAの封鎖に合わせて、強調した末端の揺れが収まる',82,647,768);badge('新生鎖 3′',70,535,C.teal);badge('5′',1470,550,C.teal)});
+}
+function drawConvergence(p){
+ cam={yaw:.12+.12*p,pitch:.23,zoom:.89,center:[0,.5,0]};
+ const a=lerp(2.12,Math.PI-.105,ramp(p,.05,.88)),t=theta(a);
+ label('oriCの複製済み領域',t.paths[1](.5),0,-60);
+ label('右回りのフォーク',t.forks[0],135,80);label('左回りのフォーク',t.forks[1],-135,80);
+ if(p>.5)label('残った親二本鎖DNA',[0,-6.4,0],0,-65);
+ overlays.push(()=>{badge('ここからRCRの終結へ',80,180);text('Su’etsugu et al., NAR, 2017 [13]',80,247,23,C.muted);text('Tus-terは追加構成。染色体の終結領域全体を再現する図ではない。',800,742,20,C.muted,500,'center')});
+}
+function drawRecQ(p){
+ obstacles.push({x:80,y:178,w:770,h:112});
+ cam={yaw:.26+.14*p,pitch:.28,zoom:1.06,center:[0,0,0]};
+ const unwind=ramp(p,.12,.76),a=[],b=[],n=220;
+ const parent=(x,sign)=>{
+  const exposed=ramp(unwind,.0,.90),h=Math.sin(Math.PI*clamp((x+5)/10));
+  if(x<-5||x>5)return [x,sign*3.0,0];
+  const edge=ramp(Math.abs(x),3.7,5),hel=.38*(1-exposed)*(1-edge),y=lerp(sign*hel*Math.cos(x*2.1),sign*3,edge);
+  return [x,y+sign*2.25*h*exposed,sign*hel*Math.sin(x*2.1)];
+ };
+ for(let i=0;i<=n;i++){const x=-17+34*i/n,aa=parent(x,1),bb=parent(x,-1);a.push(aa);b.push(bb);if(i%3===0&&Math.abs(x)<3.8)segment(aa,bb,.033,'#c8d1d6',1-unwind)}
+ tube(a,C.parent,.12);tube(b,C.parent2,.12);
+ for(const sign of [-1,1])for(const range of [[-17,-5],[5,17]])chainOn(x=>parent(x,sign),...range,(sign===1)===(range[0]<0)?C.teal:C.blue,-sign*.52);
+ const rq=[lerp(-3.4,3.4,unwind),.0,1];blob(rq,.87,C.gold,107,1-ramp(p,.84,1),[1.2,.8,1]);if(p<.9)label('RecQ',rq,40,-102);
+ if(p>.3)for(const [x,sign] of [[-2,1],[1,-1]])ssb(parent(x,sign),ramp(p,.3,.7));
+ const target=parent(-1,1),tb=mix([6,6,3],target,ramp(p,.56,.96));if(p>.56){blob(tb,1.0,C.blue,109,ramp(p,.56,.76));label('TopB / Topo III',tb,120,-90)}
+ label('娘DNAの二本鎖領域',[-11,3,0],-50,80);label(unwind<.4?'未複製の親二本鎖':'一本鎖を含む終結中間体',parent(0,-1),-100,-100);
+ overlays.push(()=>{noteBox('収束したフォーク間を拡大','RecQが二本鎖をほどき、SSBとTopBが処理を支える',80,178,770);badge('次の場面：2本の親鎖を抜き出して鎖通過を拡大',80,655);text('RecQとTopBの機能的な協働を表示。固定的なタンパク質複合体ではない。[14]',800,744,19,C.muted,500,'center')});
+}
+function drawTopBGate(p){
+ obstacles.push({x:1030,y:178,w:494,h:238},{x:75,y:620,w:690,h:112});
+ cam={yaw:-.33+.25*p,pitch:.32,zoom:1.02,center:[-1,1.0,0]};
+ const opening=ramp(p,.16,.30)*(1-ramp(p,.65,.79)),gap=.07+opening*2.0,passed=ramp(p,.32,.63),released=ramp(p,.89,1),alpha=1-released;
+ const gY=1.35;
+ // Gate-strand continuity is restored by TopB, not by LigA.
+ const delta=Math.asin(gap/10),endY=-1.4+2.75*Math.cos(delta);
+ const gFn=a=>[10*Math.cos(a),-1.4+2.75*Math.sin(a),0];
+ tube(curve(u=>gFn(lerp(Math.PI/2+delta,Math.PI*2.5-delta,u)),260),C.parent,.15);
+ const left=[-gap,endY,0],right=[gap,endY,0];
+ if(p<.16||p>.79)segment(left,right,.15,C.parent);
+ // The blue protein retains both cut ends while the gate separates.
+ for(let i=0;i<14;i++){const a=.27*Math.PI+i/13*1.46*Math.PI;blob([3.15*Math.sin(a),-.8+2.6*Math.cos(a),-.6],.66,C.blue,110+i,alpha)}
+ blob(add(right,[.5,-.4,0]),.83,C.blue,125,alpha);blob(add(left,[-.5,-.4,0]),.83,C.blue,126,alpha);
+ const tyr=add(right,[.18,-.48,.05]);ball(tyr,.20,C.gold,alpha);
+ if(p>.16&&p<.8){segment(right,tyr,.075,C.gold);label('5′-P ↔ Tyr（共有結合）',right,155,-115,C.blue);label('3′-OH',left,-145,-100,C.parent)}
+ const shift=2.7*passed,tFn=u=>{const a=u*2*Math.PI;return [.12,2.4+shift+2.4*Math.cos(a),4.3*Math.sin(a)]};
+ tube(curve(tFn,170),C.teal,.135);
+ label('G鎖：ゲートを開く親鎖',gFn(Math.PI),-35,55,C.parent);label('T鎖：通過する親鎖',tFn(.3),-160,-30,C.teal);label('TopB（単量体のゲート）',[-2,-2,0],-170,65,C.blue);
+ const stage=p<.16?0:p<.32?1:p<.65?2:p<.8?3:4;
+ overlays.push(()=>{
+  ctx.fillStyle='#ffffffef';roundrect(1030,178,494,238,12);ctx.fill();text('TopB / Type IA',1052,213,25,C.blue,650);
+  ['1  一本鎖に結合','2  切断してゲートを開く','3  別の鎖を通す','4  閉じて再結合','5  連続した骨格を戻す'].forEach((s,i)=>text(s,1054,252+i*33,21,i===stage?C.blue:C.muted,i===stage?750:450));
+  noteBox('親鎖2本を抜き出した反応図','1回の鎖通過を拡大。娘二本鎖部と他の絡まりは省略。',75,620,690);text('TopB自身が再結合する。ゲート幅と運動は模式表現。',1520,750,19,C.muted,500,'right');
+ });
+}
+function drawProducts(p){
+ obstacles.push({x:82,y:176,w:748,h:112},{x:82,y:628,w:1440,h:112});
+ cam={yaw:.14+.12*p,pitch:.27,zoom:1.03,center:[0,.25,0]};
+ const finish=ramp(p,.06,.42),supercoil=ramp(p,.58,.95),separation=lerp(6.1,8.0,ramp(p,.08,.66));
+ for(const sign of [-1,1]){
+  const fn=u=>{const a=u*2*Math.PI;return [sign*separation+4.7*Math.cos(a),.6+lerp(3.7*Math.sin(a),1.9*Math.sin(2*a),supercoil),supercoil*.9*Math.sin(a)]};
+  const parent=[],newborn=[];
+  for(let i=0;i<=160;i++){
+   const u=i/160,a=u*2*Math.PI,q=fn(u),off=[.20*Math.cos(a)*Math.cos(a*18),.20*Math.sin(a)*Math.cos(a*18),.2*Math.sin(a*18)];parent.push(add(q,off));newborn.push(add(q,off.map(v=>-v)));
+  }
+  tube(parent,sign<0?C.parent:C.parent2,.10);
+  const gapSize=Math.round(7*(1-finish));tube(newborn.slice(gapSize,81),sign<0?C.blue:C.teal,.11);tube(newborn.slice(80,161-gapSize),sign<0?C.teal:C.blue,.11);
+  for(let i=gapSize;i<161-gapSize;i+=4)segment(parent[i],newborn[i],.03,'#b9cbd3');
+  if(p<.6){const q=fn(0);blob(add(q,[.3,-.5,1]),.66,p<.30?C.teal:C.blue,129,1-ramp(p,.46,.59));label(p<.30?'合成の完了':'LigA',q,20,70)}
+  if(p>.57&&p<.94){const q=fn(.27);blob(q,.68,C.gray,81,ramp(p,.57,.68)*(1-ramp(p,.82,.94)));label('Gyrase',q,0,-85)}
+  label('娘DNA '+(sign<0?'1':'2'),fn(.5),0,95);
+ }
+ overlays.push(()=>{noteBox('分離したDNAを次の鋳型へ','残りの合成 → ニック封鎖 → 負の超らせん化',82,176,748);noteBox('別経路：Topo IV（ParC / ParE）','閉じた二本鎖DNAのカテナンはTopo IVで脱連環できる。TopBの一本鎖ゲートと区別する。',82,628,1440);badge(p>.84?'RCR：再開始を反復':'TopB経路の後処理',1180,562);text('超らせん形状は概念表示。再開始の分子過程は省略。[13,14]',1510,760,18,C.muted,500,'right')});
+}
+function drawCredits(p){overlays.push(()=>{
+ const page=Math.min(1,Math.floor(p*2));
+ refs.slice(page*8,page*8+8).forEach((r,i)=>{const y=192+i*65;text(`[${r.id}] ${r.short}`,78,y,25,C.ink,650);text(`${r.journal}  /  DOI: ${r.doi}`,120,y+28,20,C.muted,450)});
+ text('完全な論文タイトルとリンクは、同梱のHTMLとMarkdownに掲載。',80,746,20,C.muted);badge(`${page+1} / 2`,1430,170);
+})}
+const renderers=[drawOverview,drawRecognition,drawHelicalAssembly,drawBending,drawMelting,drawLoading,drawActivation,drawAssembly,drawLeading,drawLagging,drawTrombone,drawMaturation,drawLigation,drawConvergence,drawRecQ,drawTopBGate,drawProducts,drawCredits];
+function locate(t){let i=chapters.findIndex(c=>t<c.start+c.dur);return i<0?chapters.length-1:i}
+function draw(t){
+ time=clamp(t,0,duration);const i=locate(time),c=chapters[i],p=clamp((time-c.start)/c.dur);local=p;
+ primitives=[];labels=[];overlays=[];obstacles=[];
+ ctx.globalAlpha=1;ctx.fillStyle='#f6f9fa';ctx.fillRect(0,0,W,H);
+ const bg=ctx.createRadialGradient(840,440,80,840,440,720);bg.addColorStop(0,'#ffffff');bg.addColorStop(1,'#edf3f6');ctx.fillStyle=bg;ctx.fillRect(0,134,W,637);
+ ctx.save();ctx.beginPath();ctx.rect(0,140,W,630);ctx.clip();renderers[i](p);drawScene();ctx.restore();
+ ctx.fillStyle='#ffffff';ctx.fillRect(0,0,W,134);text(c.en,60,43,17,C.blue,650);text(c.title,58,99,43,C.ink,650);text(`${String(i+1).padStart(2,'0')} / ${chapters.length}`,1534,88,25,C.muted,450,'right');
+ ctx.fillStyle='#e0e8ec';ctx.fillRect(0,133,W,1);ctx.fillRect(0,770,W,1);
+ const cap=c.caps[p<.5?0:1];text('MECHANISM',60,817,15,C.blue,700);wrap(cap,60,862,1475,29,43);
+ text(`文献 ${(c.refs.length>8?'[1]-[16]':c.refs.map(r=>'['+r+']').join(' '))}  |  立体配置・時間は模式表現`,60,961,19,C.muted,450);
+ text(`${fmt(time)} / ${fmt(duration)}`,1536,961,20,C.muted,450,'right');
+ ctx.fillStyle='#dde6eb';ctx.fillRect(0,986,W,14);ctx.fillStyle=C.blue;ctx.fillRect(0,986,W*time/duration,14);
+ for(const ch of chapters){ctx.fillStyle='#ffffffbb';ctx.fillRect(W*ch.start/duration,986,3,14)}
+ if(i!==active){active=i;updateChapter(i)}
+ document.getElementById('seek').value=time;document.getElementById('time').textContent=`${fmt(time)} / ${fmt(duration)}`;
+ document.getElementById('accessible-scene').textContent=c.title+'。'+cap+'。'+c.detail;
+ frameIndex++;
+}
+function fmt(t){return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0')}
+let defaultLegend='';
+function updateChapter(i){
+ const c=chapters[i];document.querySelectorAll('.chapter').forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));
+ const legend=document.querySelector('.legend');if(!defaultLegend)defaultLegend=legend.innerHTML;
+ legend.innerHTML=c.title==='TopBのゲートを鎖が通る'?'<span style="--c:#647888">G鎖：ゲートを開く親鎖</span><span style="--c:#579d96">T鎖：通過する親鎖</span><span style="--c:#1479b8">TopB（単量体）</span>':defaultLegend;
+ document.getElementById('scene-sources').innerHTML=c.refs.map(n=>{const r=refs[n-1];return `<a href="${r.url}" target="_blank" rel="noopener">[${n}] ${r.short}</a>`}).join('');
+ document.getElementById('scene-detail').textContent=c.detail;
+ document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===chapters.length-1;
+}
+function setPlaying(value){playing=value;last=0;document.getElementById('play').textContent=playing?'❚❚ 一時停止':time>=duration?'↺ 再生':'▶ 再生'}
+function resetView(){userYaw=0;userPitch=0;userZoom=1}
+function go(i){resetView();draw(chapters[clamp(i,0,chapters.length-1)].start);last=0}
+document.getElementById('chapters').innerHTML=chapters.map((c,i)=>`<button class="chapter" data-index="${i}"><span>${String(i+1).padStart(2,'0')}</span><span>${c.title}</span><small>${fmt(c.start)}</small></button>`).join('');
+document.querySelectorAll('.chapter').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.index))));
+document.getElementById('play').onclick=()=>{if(time>=duration)draw(0);setPlaying(!playing)};
+document.getElementById('prev').onclick=()=>go(active-1);document.getElementById('next').onclick=()=>go(active+1);
+document.getElementById('seek').max=duration;document.getElementById('seek').oninput=e=>{draw(Number(e.target.value));last=0};
+document.getElementById('speed').onchange=e=>speed=Number(e.target.value);
+document.getElementById('reset-view').onclick=()=>{resetView();draw(time)};
+document.getElementById('labels').onclick=e=>{showLabels=!showLabels;e.target.setAttribute('aria-pressed',String(showLabels));e.target.textContent='ラベル '+(showLabels?'ON':'OFF');draw(time)};
+const dialog=document.getElementById('refs');document.getElementById('refs-open').onclick=()=>{setPlaying(false);dialog.showModal()};document.getElementById('refs-close').onclick=()=>dialog.close();
+document.getElementById('ref-list').innerHTML=refs.map(r=>`<li><b>[${r.id}] ${r.short}</b>, ${r.journal}. <a href="${r.url}" target="_blank" rel="noopener">${r.title}</a>.<br>DOI: <a href="https://doi.org/${r.doi}" target="_blank" rel="noopener">${r.doi}</a><span>${r.why}</span></li>`).join('');
+let drag=null;canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,yaw:userYaw,pitch:userPitch};canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{if(!drag)return;userYaw=clamp(drag.yaw+(e.clientX-drag.x)*.004,-1.1,1.1);userPitch=clamp(drag.pitch+(e.clientY-drag.y)*.003,-.7,.7);draw(time)});
+canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);
+canvas.addEventListener('wheel',e=>{e.preventDefault();userZoom=clamp(userZoom*Math.exp(-e.deltaY*.001),.6,1.6);draw(time)},{passive:false});
+window.addEventListener('keydown',e=>{if(dialog.open||['INPUT','SELECT','BUTTON','A'].includes(document.activeElement.tagName))return;if(e.code==='Space'){e.preventDefault();if(time>=duration)draw(0);setPlaying(!playing)}if(e.code==='ArrowRight'){e.preventDefault();draw(time+5)}if(e.code==='ArrowLeft'){e.preventDefault();draw(time-5)}});
+function tick(now){if(playing){if(last)draw(time+Math.min((now-last)/1000,.12)*speed);if(time>=duration)setPlaying(false)}last=now;requestAnimationFrame(tick)}
+// Deterministic frame control is used by the local export and visual verification scripts.
+window.replication={draw:t=>{setPlaying(false);resetView();draw(t)},duration,chapters,refs,get frameIndex(){return frameIndex},get state(){return {time,active,playing,showLabels,userYaw,userPitch,userZoom}},play:()=>setPlaying(true)};
+draw(0);requestAnimationFrame(tick);
+})();
+
+</script>
+<script>
+document.getElementById('copy-feedback').onclick=async()=>{
+ const s=window.replication.state,c=window.replication.chapters[s.active],t=Math.floor(s.time),stamp=Math.floor(t/60)+':'+String(t%60).padStart(2,'0');
+ const memo='大腸菌DNA複製アニメーション v2\n場面：'+c.title+'\n時刻：'+stamp+'\nURL：'+location.href.split('?')[0]+'\n指摘・質問：\n参考文献（任意）：';
+ try{await navigator.clipboard.writeText(memo);document.getElementById('feedback-status').textContent='コピーしました。共有者への返信に貼り付けてください。'}catch(e){document.getElementById('feedback-status').textContent=memo;document.getElementById('feedback-status').style.whiteSpace='pre-wrap';}
+};
+</script></body></html>
