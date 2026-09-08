@@ -3,12 +3,12 @@ description: 科学的内容や見え方についての指摘・質問
 body:
   - type: markdown
     attributes:
-      value: "投稿内容は公開されます。版・場面・時刻があると修正箇所を特定しやすくなります。"
+      value: "投稿内容は公開されます。版・場面・時刻を添えてください。"
   - type: input
     id: scene
     attributes:
       label: 版・場面・再生時刻
-      placeholder: "v3 / TopBのゲートを鎖が通る / 5:16"
+      placeholder: "v7 / Topo IIIが一本鎖ゲートを開く / 8:29"
   - type: textarea
     id: feedback
     attributes:
