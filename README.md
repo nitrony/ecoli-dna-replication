@@ -4,7 +4,7 @@ version: 7
 tags: [DNA-replication, scientific-animation]
 ---
 
-# 試験管内RCRの工程アニメーション
+# 大腸菌染色体複製のアニメーション
 
 [アニメーションを開く](https://nitrony.github.io/ecoli-dna-replication/)
 

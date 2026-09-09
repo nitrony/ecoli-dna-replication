@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="animation-version" content="7">
 <meta name="description" content="大腸菌のDNA複製を、開始・伸長・成熟から基質別のデカテネーションまで追う日本語の立体模式アニメーション。原著29文献・動画1件と反応段階の停止操作を収録。">
-<title>試験管内RCRの工程アニメーション v7</title>
+<title>大腸菌染色体複製のアニメーション v7</title>
 <style>
 :root{color-scheme:light;--ink:#202c36;--muted:#667782;--line:#dbe2e5;--blue:#1479b8;--paper:#f4f7f8}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}button,input,select{font:inherit}button,a,select,input{outline-offset:4px}button{cursor:pointer}button:disabled{opacity:.35;cursor:default}button:focus-visible,a:focus-visible{outline:3px solid #1479b8}a{color:#146d9e;text-underline-offset:3px}.sidebar{min-width:0}.chapter-list{min-width:0;max-width:100%}dialog a{overflow-wrap:anywhere}
@@ -21,7 +21,7 @@ dialog{border:1px solid var(--line);border-radius:12px;max-width:900px;width:cal
 </head>
 <body>
 <div class="app">
-<aside class="sidebar"><div class="brand"><h1>試験管内RCRの<br>工程アニメーション</h1><p>oriCでの複製開始から<br>基質別の脱連環・娘DNAの分離まで</p></div><nav id="chapters" class="chapter-list" aria-label="場面を選択"></nav><div class="side-footer">研究室での説明用 / 日本語字幕<br>分子形状と運動は模式表現<br>改訂版 v7 / 原著29文献・動画1件<br>文献確認日 2026.09.08</div></aside>
+<aside class="sidebar"><div class="brand"><h1>大腸菌染色体複製の<br>アニメーション</h1><p>Su'etsugu et al NAR 2017で再構成された大腸菌染色体複製再構成系を例に</p></div><nav id="chapters" class="chapter-list" aria-label="場面を選択"></nav><div class="side-footer">研究室での説明用 / 日本語字幕<br>分子形状と運動は模式表現<br>改訂版 v7 / 原著29文献・動画1件<br>文献確認日 2026.09.08</div></aside>
 <main class="main">
 <div class="topbar"><strong>複製の開始 → 伸長 → 娘DNAの分離 <span class="version-tag">v7</span></strong><button id="refs-open">文献と模式化について</button></div>
 <div class="stage"><canvas id="scene" width="1600" height="1000" aria-label="大腸菌DNA複製の立体模式アニメーション"></canvas><p id="accessible-scene" class="sr-only"></p></div>
@@ -1604,7 +1604,7 @@ draw(0);requestAnimationFrame(tick);
 <script>
 document.getElementById('copy-feedback').onclick=async()=>{
  const state=window.replication.state,c=window.replication.chapters[state.active],t=Math.floor(state.time),stamp=Math.floor(t/60)+':'+String(t%60).padStart(2,'0');
- const memo='試験管内RCRの工程アニメーション v7\n場面：'+c.title+'\n時刻：'+stamp+'\n指摘・質問：\n参考文献（任意）：';
+ const memo='大腸菌染色体複製のアニメーション v7\n場面：'+c.title+'\n時刻：'+stamp+'\n指摘・質問：\n参考文献（任意）：';
  try{await navigator.clipboard.writeText(memo);document.getElementById('feedback-status').textContent='コピーしました。共有者への返信に貼り付けてください。';}catch(e){document.getElementById('feedback-status').textContent=memo;document.getElementById('feedback-status').style.whiteSpace='pre-wrap';}
 };
 </script></body></html>
